@@ -7,7 +7,25 @@ export default new Router({
     {
       path: '/',
       name: 'Layout',
-      component: () => import('@/views/layout')
+      redirect: '/filing-cabinet',
+      component: () => import('@/views/layout'),
+      children: [
+        {
+          path: '/filing-cabinet',
+          name: '档案柜',
+          component: () => import('@/views/filing-cabinet')
+        },
+        {
+          path: '/key-words',
+          name: '关键词检索',
+          component: () => import('@/views/key-words')
+        },
+        {
+          path: '/summary-troubleshooting',
+          name: '摘要排查',
+          component: () => import('@/views/summary-troubleshooting')
+        }
+      ]
     }
   ]
 })

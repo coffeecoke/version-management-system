@@ -1,7 +1,8 @@
 <template>
   <el-menu
-    default-active="2"
     class="el-menu"
+    :router = "true"
+    :default-active = "defaultActive"
     @open="handleOpen"
     @close="handleClose"
     background-color="#545c64"
@@ -24,9 +25,9 @@
         <span>产品经理</span>
       </template>
       <el-menu-item-group>
-        <el-menu-item>档案柜</el-menu-item>
-        <el-menu-item>关键字检索</el-menu-item>
-        <el-menu-item>摘要排查</el-menu-item>
+        <el-menu-item index="filing-cabinet">档案柜</el-menu-item>
+        <el-menu-item index="key-words">关键字检索</el-menu-item>
+        <el-menu-item index="summary-troubleshooting">摘要排查</el-menu-item>
       </el-menu-item-group>
     </el-submenu>
     <el-submenu index="menu-3">
@@ -58,6 +59,20 @@ export default {
   data () {
     return {}
   },
+  computed: {
+    defaultActive () {
+      return 'filing-cabinet'
+    }
+  },
+  methods: {
+    handleOpen () {
+
+    },
+    handleClose () {
+
+    }
+
+  },
   activated () {}
 }
 </script>
@@ -65,5 +80,6 @@ export default {
 /* css */
 .el-menu {
   width:100%;
+  height:100%;
 }
 </style>

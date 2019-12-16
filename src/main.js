@@ -4,9 +4,10 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import axios from 'axios'
-import store from './store' // 引入vuex
+// import store from './store' // 引入vuex
 import ElementUI from 'element-ui'
-import '@/styles/element-ui.scss'
+import 'element-ui/lib/theme-chalk/index.css'
+// import '@/styles/element-ui.scss'
 import 'babel-polyfill' // http 框架
 Vue.prototype.$http = axios // 解决ie下promise报错
 Vue.config.productionTip = false
@@ -15,7 +16,7 @@ Vue.use(ElementUI)
 new Vue({
   el: '#app',
   router,
-  store,
+  // store,
   components: { App },
   template: '<App/>'
 })

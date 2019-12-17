@@ -6,6 +6,7 @@ import router from './router'
 import axios from 'axios'
 // import store from './store' // 引入vuex
 import '@/styles/reset.scss'
+import '@/styles/transition.scss'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 // import '@/styles/element-ui.scss'

@@ -24,18 +24,30 @@
     ref="node"
   >
     <div class="el-tree-node__content"
-      :style="{ 'padding-left': (node.level - 1) * tree.indent + 'px' }">
+      :class = "[
+        node.data.nodeType ? node.data.nodeType:''
+      ]"
+      :style="{ 'padding-left': node.data.nodeType=='pt'||node.data.nodeType=='ptd' ? ((node.level - 1) * 25 + 'px'): ((node.level - 1) * tree.indent + 'px')}">
+      <i :class="[
+        'front-icon',
+        node.data.frontIconClass ? node.data.frontIconClass:''
+      ]"></i>
       <span
         @click.stop="handleExpandIconClick"
         :class="[
           { 'is-leaf': node.isLeaf, expanded: !node.isLeaf && expanded },
           'el-tree-node__expand-icon',
-          tree.iconClass ? tree.iconClass : 'el-icon-caret-right'
+          tree.iconClass ? tree.iconClass : 'el-icon-arrow-right'
+          //node.data.iconClass ? node.data.iconClass : ''
         ]"
       >
       </span>
+      <template v-if="node.data.nodeName&&(node.data.nodeType==='pk' || node.data.nodeType==='pkd')">
+         <span class="node-name">{{node.data.nodeName}}</span>
+      </template>
+     
       <el-checkbox
-        v-if="showCheckbox && node.data.show"
+        v-if="showCheckbox && node.data.showCheckbox"
         v-model="node.checked"
         :indeterminate="node.indeterminate"
         :disabled="!!node.disabled"

@@ -126,7 +126,7 @@
       accordion: Boolean,
       indent: {
         type: Number,
-        default: 18
+        default: 10
       },
       iconClass: String
     },

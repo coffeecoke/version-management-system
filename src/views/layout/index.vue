@@ -40,6 +40,9 @@ export default {
   height:60px;
   background-color:#5D70EA;
 }
+.el-main {
+  background-color:#f1f1f1;
+}
 .content {
   flex:1;
 }

@@ -31,9 +31,10 @@ export default {
 .left-tree {
   width:390px;
   margin-right:20px;
+  background-color:#fff;
 }
 .right-form {
   flex:1;
-
+  background-color:#fff;
 }
 </style>

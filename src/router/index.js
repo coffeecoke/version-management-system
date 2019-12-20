@@ -7,13 +7,35 @@ export default new Router({
     {
       path: '/',
       name: 'Layout',
-      redirect: '/filing-cabinet',
+      redirect: 'filing-cabinet',
       component: () => import('@/views/layout'),
       children: [
         {
-          path: '/filing-cabinet',
-          name: '档案柜',
-          component: () => import('@/views/filing-cabinet')
+          path: 'filing-cabinet',
+          name: 'filingCabinet',
+          // redirect: 'filing-cabinet/form-family',
+          meta: {
+            title: '档案柜'
+          },
+          component: () => import('@/views/filing-cabinet'),
+          children: [
+            {
+              path: 'form-family',
+              name: 'formFamily',
+              meta: {
+                title: '产品族'
+              },
+              component: () => import('@/views/filing-cabinet/form-family')
+            },
+            {
+              path: 'form-generation',
+              name: 'formGeneration',
+              meta: {
+                title: '产品代'
+              },
+              component: () => import('@/views/filing-cabinet/form-generation')
+            }
+          ]
         },
         {
           path: '/key-words',

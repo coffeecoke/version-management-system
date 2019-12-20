@@ -11,24 +11,20 @@
         ref="tree"
         accordion
         :props="defaultProps"
+        @node-click="handelNodeClick"
       >
-      <!-- <span class="custom-tree-node" slot-scope="{ node, data }">
+      <span class="custom-tree-node" slot-scope="{ node, data}">
         <span>{{ node.label }}</span>
-        <span>
-          <el-button
-            type="text"
-            size="mini"
-            @click="() => show(node, data)">
-            Append
-          </el-button>
-          <el-button
-            type="text"
-            size="mini"
-            @click="() => remove(node, data)">
-            Delete
-          </el-button>
-        </span>
-      </span> -->
+        <template v-if="data.nodeType==='pf'">
+          <span class="el-icon-plus">新增产品代</span>
+        </template>
+        <template v-if="data.nodeType==='pg'">
+          <span class="el-icon-circle-plus"></span>
+        </template>
+        <template v-if="data.nodeType==='pv'">
+          <span class="fa fa-download">全部下载</span>
+        </template>
+      </span>
       </elTree2>
     </div>
   </div>
@@ -196,31 +192,15 @@ export default {
         resolve(data)
       }, 500)
     },
-    show (node, data) {
-      console.log(node)
-      console.log(data)
-    },
-    getCheckedNodes () {
-      console.log(this.$refs.tree.getCheckedNodes())
-    },
-    getCheckedKeys () {
-      console.log(this.$refs.tree.getCheckedKeys())
-    },
-    setCheckedNodes () {
-      this.$refs.tree.setCheckedNodes([{
-        id: 5,
-        label: '二级 2-1'
-      }, {
-        id: 9,
-        label: '三级 1-1-1'
-      }])
-    },
-    setCheckedKeys () {
-      this.$refs.tree.setCheckedKeys([3])
-    },
-    resetChecked () {
-      this.$refs.tree.setCheckedKeys([])
+    handelNodeClick (obj, node, el) {
+      console.log(obj)
+      if (obj.nodeType === 'pf') {
+        this.$router.push({name: 'formFamily', params: {a: 123}})
+      } else if (obj.nodeType === 'pg') {
+        this.$router.push({name: 'formGeneration', params: {a: 123}})
+      }
     }
+
   },
 
   activated () {}
@@ -246,6 +226,28 @@ export default {
 .el-tree-node__label {
   font-size:12px;
 }
+.pf .el-icon-plus {
+  position:absolute;
+  top:50%;
+  transform:translateY(-50%);
+  right:20px;
+  color:#5d70ea;
+  font-size:12px;
+}
+.pg .el-icon-circle-plus {
+  position:absolute;
+  top:50%;
+  transform:translateY(-50%);
+  right:20px;
+  color:#5d70ea;
+}
+.pv .fa-download {
+  position:absolute;
+  top:50%;
+  transform:translateY(-50%);
+  right:20px;
+  color:#5d70ea;
+}
 .node-name {
   font-size:12px;
   display: inline-block;
@@ -260,7 +262,7 @@ export default {
   font-weight: bold;
 }
 .pf > .el-icon-arrow-right  {
-  display:visiblity;
+  visibility:hidden;
 }
 .el-tree  .pf {
   height:36px;
@@ -280,6 +282,7 @@ export default {
 }
 .el-tree .el-tree-node__content {
   // height:34px;
+  position: relative;
   border-bottom:1px solid #E0E0E0;
 
 }
@@ -309,7 +312,9 @@ export default {
 .el-tree-node__content.pv {
   color:#72643F
 }
-
+.is-expanded>.pf .el-icon-plus {
+  color:#fff;
+}
 .el-tree  .is-expanded>.pf + .el-tree-node__children {
   border-left:3px solid #5D70EA;
   background-color:rgba(249,249,249,1);

@@ -9,42 +9,42 @@
         <el-form-item label="产品族名称：">
           <template>
             <template v-if="sizeForm.edit">
-              <el-input v-show="downIcon" v-model="sizeForm.name"></el-input>
+              <el-input v-show="sizeForm.downIcon" v-model="sizeForm.name"></el-input>
             </template>
-            <span v-show="!downIcon" else>{{sizeForm.name}}</span>
+            <span v-show="!sizeForm.downIcon" else>{{sizeForm.name}}</span>
           </template>
         </el-form-item>
         <el-form-item label=" 英文缩写：">
           <template>
             <template v-if="sizeForm.edit">
-              <el-input v-show="downIcon" v-model="sizeForm.can"></el-input>
+              <el-input v-show="sizeForm.downIcon" v-model="sizeForm.can"></el-input>
             </template>
-            <span else v-show="!downIcon">{{sizeForm.can}}</span>
+            <span else v-show="!sizeForm.downIcon">{{sizeForm.can}}</span>
           </template>
         </el-form-item>
         <el-form-item label="创建人：">
           <template>
             <template v-if="sizeForm.edit">
-              <el-input v-show="downIcon" v-model="sizeForm.founder"></el-input>
+              <el-input v-show="sizeForm.downIcon" v-model="sizeForm.founder"></el-input>
             </template>
-            <span else v-show="!downIcon">{{sizeForm.founder}}</span>
+            <span else v-show="!sizeForm.downIcon">{{sizeForm.founder}}</span>
           </template>
         </el-form-item>
         <el-form-item label="创建时间：">
           <template>
             <template v-if="sizeForm.edit">
-              <el-date-picker v-show="downIcon" value-format="yyyy-MM-dd" class="ipt" v-model="sizeForm.time" type="date"
+              <el-date-picker v-show="sizeForm.downIcon" value-format="yyyy-MM-dd" class="ipt" v-model="sizeForm.time" type="date"
               placeholder="选择日期"></el-date-picker>
             </template>
-            <span else v-show="!downIcon">{{sizeForm.time}}</span>
+            <span else v-show="!sizeForm.downIcon">{{sizeForm.time}}</span>
           </template>
         </el-form-item>
         <el-form-item label="创建事由：">
           <template>
             <template v-if="sizeForm.edit">
-              <el-input v-show="downIcon" type="textarea" v-model="sizeForm.cause"></el-input>
+              <el-input v-show="sizeForm.downIcon" type="textarea" v-model="sizeForm.cause"></el-input>
             </template>
-            <span else v-show="!downIcon">{{sizeForm.cause}}</span>
+            <span else v-show="!sizeForm.downIcon">{{sizeForm.cause}}</span>
           </template>
         </el-form-item>
       </el-form>
@@ -72,7 +72,7 @@ export default {
   methods: {
     choosePer () {
       this.sizeForm.edit = !this.sizeForm.edit
-      this.downIcon = !this.downIcon
+      this.sizeForm.downIcon = !this.sizeForm.downIcon
     },
     onSubmit () {
       this.sizeForm.edit = true

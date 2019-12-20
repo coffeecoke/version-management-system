@@ -1,7 +1,9 @@
 <template>
   <div class="filing-content">
     <left-tree class="left-tree"></left-tree>
-    <right-form class="right-form"></right-form>
+    <right-form class="right-form">
+
+    </right-form>
   </div>
 </template>
 <script>

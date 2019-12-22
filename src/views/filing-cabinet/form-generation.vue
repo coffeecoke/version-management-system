@@ -1,7 +1,16 @@
 <template>
   <div class="box">
+    <template
+              v-if="edit"
+              v-show="boxshow"
+            >
     <div class="box-header">
       <h3 class="header-title"> <span class="num">02</span>查看产品代</h3>
+    </div>
+    </template>
+    <div else v-show="!boxshow" class="box-header">
+      <h3 class="header-title"> <span class="num">02</span>查看产品代</h3>
+      <span class="edit" @click="onEdit()"><i class="el-icon-edit"></i>编辑</span>
     </div>
     <div class="box-body">
       <div class="form-box">
@@ -12,8 +21,8 @@
             label-width="100px"
           >
             <template
-              v-if="formRepre.edit"
-              v-show="formRepre.boxshow"
+              v-if="edit"
+              v-show="boxshow"
             >
               <el-form-item label="产品名称：">
                 <el-input v-model="formRepre.name"></el-input>
@@ -21,11 +30,11 @@
             </template>
             <ul
               else
-              v-show="!formRepre.boxshow"
+              v-show="!boxshow"
               class="ulList"
             >
               <li>
-                <span class="leftName">产品名称111：</span>
+                <span class="leftName">产品名称：</span>
                 <el-input
                   class="leftValue"
                   v-model="formRepre.name"
@@ -33,8 +42,8 @@
               </li>
             </ul>
             <template
-              v-if="formRepre.edit"
-              v-show="formRepre.boxshow"
+              v-if="edit"
+              v-show="boxshow"
             >
               <el-form-item label="英文缩写：">
                 <el-input v-model="formRepre.sx"></el-input>
@@ -42,11 +51,11 @@
             </template>
             <ul
               else
-              v-show="!formRepre.boxshow"
+              v-show="!boxshow"
               class="ulList"
             >
               <li>
-                <span class="leftName">产品名称111：</span>
+                <span class="leftName">英文缩写：</span>
                 <el-input
                   class="leftValue"
                   v-model="formRepre.sx"
@@ -54,8 +63,8 @@
               </li>
             </ul>
             <template
-              v-if="formRepre.edit"
-              v-show="formRepre.boxshow"
+              v-if="edit"
+              v-show="boxshow"
             >
               <el-form-item label="产品类型：">
                 <el-select
@@ -75,20 +84,20 @@
             </template>
             <ul
               else
-              v-show="!formRepre.boxshow"
+              v-show="!boxshow"
               class="ulList"
             >
               <li>
-                <span class="leftName">产品名称111：</span>
+                <span class="leftName">产品类型：</span>
                 <el-input
                   class="leftValue"
-                  v-model="formRepre.sx"
+                  v-model="formRepre.type"
                 ></el-input>
               </li>
             </ul>
             <template
-              v-if="formRepre.edit"
-              v-show="formRepre.boxshow"
+              v-if="edit"
+              v-show="boxshow"
             >
               <el-form-item label="产品接口类型：">
                 <el-select
@@ -108,20 +117,20 @@
             </template>
             <ul
               else
-              v-show="!formRepre.boxshow"
+              v-show="!boxshow"
               class="ulList"
             >
               <li>
-                <span class="leftName">产品名称111：</span>
+                <span class="leftName">产品接口类型：</span>
                 <el-input
                   class="leftValue"
-                  v-model="formRepre.sx"
+                  v-model="formRepre.jk"
                 ></el-input>
               </li>
             </ul>
             <template
-              v-if="formRepre.edit"
-              v-show="formRepre.boxshow"
+              v-if="edit"
+              v-show="boxshow"
             >
               <el-form-item label="创建时间：">
                 <el-date-picker
@@ -135,20 +144,20 @@
             </template>
             <ul
               else
-              v-show="!formRepre.boxshow"
+              v-show="!boxshow"
               class="ulList"
             >
               <li>
-                <span class="leftName">产品名称111：</span>
+                <span class="leftName">创建时间：</span>
                 <el-input
                   class="leftValue"
-                  v-model="formRepre.sx"
+                  v-model="formRepre.time"
                 ></el-input>
               </li>
             </ul>
             <template
-              v-if="formRepre.edit"
-              v-show="formRepre.boxshow"
+              v-if="edit"
+              v-show="boxshow"
             >
               <el-form-item label="产品经理：">
                 <el-input v-model="formRepre.manage"></el-input>
@@ -156,20 +165,20 @@
             </template>
             <ul
               else
-              v-show="!formRepre.boxshow"
+              v-show="!boxshow"
               class="ulList"
             >
               <li>
-                <span class="leftName">产品名称111：</span>
+                <span class="leftName">产品经理：</span>
                 <el-input
                   class="leftValue"
-                  v-model="formRepre.sx"
+                  v-model="formRepre.manage"
                 ></el-input>
               </li>
             </ul>
             <template
-              v-if="formRepre.edit"
-              v-show="formRepre.boxshow"
+              v-if="edit"
+              v-show="boxshow"
             >
               <el-form-item label="创建事由：">
                 <el-input
@@ -180,14 +189,15 @@
             </template>
             <ul
               else
-              v-show="!formRepre.boxshow"
-              class="ulList"
+              v-show="!boxshow"
+              class="ulList last-list"
             >
               <li>
-                <span class="leftName">产品名称111：</span>
+                <span class="leftName">创建事由：</span>
                 <el-input
+                  type="textarea"
                   class="leftValue"
-                  v-model="formRepre.sx"
+                  v-model="formRepre.origin"
                 ></el-input>
               </li>
             </ul>
@@ -199,6 +209,10 @@
             :model="formRepre"
             label-width="100px"
           >
+          <template
+              v-if="edit"
+              v-show="boxshow"
+            >
             <el-form-item label="版本变更记录：">
               <el-input
                 type="textarea"
@@ -206,27 +220,100 @@
                 readonly
               ></el-input>
             </el-form-item>
+          </template>
+          <ul
+              else
+              v-show="!boxshow"
+              class="ulList last-list"
+            >
+              <li>
+                <span class="leftName">版本变更记录：</span>
+                <el-input
+                  type="textarea"
+                  class="leftValue"
+                  v-model="formRepre.writ"
+                ></el-input>
+              </li>
+            </ul>
+            <template
+              v-if="edit"
+              v-show="boxshow"
+            >
             <el-form-item label="演示环境URL：">
               <el-input
                 v-model="formRepre.url"
                 readonly
               ></el-input>
             </el-form-item>
+            </template>
+            <ul
+              else
+              v-show="!boxshow"
+              class="ulList"
+            >
+              <li>
+                <span class="leftName">演示环境URL：</span>
+                <el-input
+                  class="leftValue"
+                  v-model="formRepre.url"
+                ></el-input>
+              </li>
+            </ul>
+            <template
+              v-if="edit"
+              v-show="boxshow"
+            >
             <el-form-item label="数据库地址：">
               <el-input
                 v-model="formRepre.location"
                 readonly
               ></el-input>
             </el-form-item>
+            </template>
+            <ul
+              else
+              v-show="!boxshow"
+              class="ulList"
+            >
+              <li>
+                <span class="leftName">数据库地址：</span>
+                <el-input
+                  class="leftValue"
+                  v-model="formRepre.location"
+                ></el-input>
+              </li>
+            </ul>
+            <template
+              v-if="edit"
+              v-show="boxshow"
+            >
             <el-form-item label="用户名/密码：">
               <el-input
                 v-model="formRepre.admin"
                 disabled
               ></el-input>
             </el-form-item>
+            </template>
+            <ul
+              else
+              v-show="!boxshow"
+              class="ulList"
+            >
+              <li>
+                <span class="leftName">用户名/密码：</span>
+                <el-input
+                  class="leftValue"
+                  v-model="formRepre.admin"
+                ></el-input>
+              </li>
+            </ul>
           </el-form>
         </div>
       </div>
+      <template
+              v-if="edit"
+              v-show="boxshow"
+            >
       <div class="btn-box">
         <div class="btn">
           <el-button
@@ -241,6 +328,7 @@
           >保存</el-button>
         </div>
       </div>
+      </template>
     </div>
   </div>
 </template>
@@ -250,30 +338,34 @@ export default {
     return {
       labelPosition: 'right',
       formRepre: {
-        name: '111',
-        sx: '222',
-        type: '333',
-        jk: '',
-        jk1: '123',
-        jk2: '234',
-        jk3: '123',
-        jk4: '234',
-        time: '',
-        manage: '',
-        origin: '',
+        name: '监管报送系统',
+        sx: 'jdcbdhfbh',
+        type: 'APR_WER',
+        jk: '报文类型',
+        jk1: '明细报文类',
+        jk2: '明细报文类',
+        jk3: '明细报文类',
+        jk4: '明细报文类',
+        time: '2019-07-30',
+        manage: 'admin',
+        origin: '版本登记版本登记版本登记版本登记版本登记版本登记',
         writ: '版本登记版本登记版本登记版本登记版本登记版本登记',
         url: 'http://10.10.38',
         location: 'http://10.10.2',
-        admin: 'admin/admin',
-        edit: true,
-        boxshow: true
-      }
+        admin: 'admin/admin'
+      },
+      edit: true,
+      boxshow: true
     }
   },
   methods: {
     onSubmit () {
-      this.formRepre.edit = false
-      this.formRepre.boxshow = false
+      this.edit = false
+      this.boxshow = false
+    },
+    onEdit () {
+      this.edit = true
+      this.boxshow = true
     }
   }
 }
@@ -294,7 +386,7 @@ export default {
   width: 100%;
 }
 .el-textarea /deep/ .el-textarea__inner {
-  height: 140px;
+  height: 120px;
 }
 .el-form-item {
   margin-bottom: 8px;
@@ -304,22 +396,16 @@ export default {
 }
 .btn-box {
   width: 100%;
-  height: 100px;
   // background: #ccc;
-  position: fixed;
-  bottom: 0px;
+  // position: fixed;
+  // bottom: 0px;
 }
 .btn {
-  display: block;
-  margin: 0 auto;
+  margin: 10px auto;
   width: 100%;
-  position: absolute;
-  left: 50%;
-  transform: translateX(-30%);
-  top: 10px;
+  text-align: center;
 }
 .btn .cancel {
-  text-align: center;
   background: #ebebeb;
   border: none;
   min-width: 100px;
@@ -340,7 +426,8 @@ export default {
   height: 40px;
   line-height: 40px;
 }
-.ulList {
+.ulList:last-child{
+  border-bottom:solid 1px #ccc;
 }
 .ulList li {
   display: flex;
@@ -349,7 +436,11 @@ export default {
   // width:110px;
   height: 40px;
   line-height: 40px;
+  font-size:12px;
+  padding-left:5px;
   display: block;
+  border-top:solid 1px #ccc;
+  border-left:solid 1px #ccc;
 }
 .leftName {
   width: 140px;
@@ -366,5 +457,21 @@ export default {
 }
 .leftValue .el-input:last-child /deep/ .el-input__inner{
   border-bottom:solid 1px #ccc!important;
+}
+.box-header{
+  display: flex;
+  justify-content: space-between;
+}
+.edit{
+  padding-right:20px;
+}
+.last-list li{
+  height:120px!important;
+}
+.last-list li span{
+  height:100%;
+}
+.last-list li .leftValue .el-input__inner{
+  height:100%!important;
 }
 </style>

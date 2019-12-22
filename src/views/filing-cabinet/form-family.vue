@@ -8,7 +8,7 @@
       <el-form ref="form" :model="sizeForm" label-width="120px" size="mini">
         <el-form-item label="产品族名称：">
           <template>
-            <template v-if="sizeForm.edit">
+            <template v-if="edit">
               <el-input v-show="downIcon" v-model="sizeForm.name"></el-input>
             </template>
             <span v-show="!downIcon" else>{{sizeForm.name}}</span>
@@ -16,7 +16,7 @@
         </el-form-item>
         <el-form-item label=" 英文缩写：">
           <template>
-            <template v-if="sizeForm.edit">
+            <template v-if="edit">
               <el-input v-show="downIcon" v-model="sizeForm.can"></el-input>
             </template>
             <span else v-show="!downIcon">{{sizeForm.can}}</span>
@@ -24,7 +24,7 @@
         </el-form-item>
         <el-form-item label="创建人：">
           <template>
-            <template v-if="sizeForm.edit">
+            <template v-if="edit">
               <el-input v-show="downIcon" v-model="sizeForm.founder"></el-input>
             </template>
             <span else v-show="!downIcon">{{sizeForm.founder}}</span>
@@ -32,7 +32,7 @@
         </el-form-item>
         <el-form-item label="创建时间：">
           <template>
-            <template v-if="sizeForm.edit">
+            <template v-if="edit">
               <el-date-picker v-show="downIcon" value-format="yyyy-MM-dd" class="ipt" v-model="sizeForm.time" type="date"
               placeholder="选择日期"></el-date-picker>
             </template>
@@ -41,14 +41,25 @@
         </el-form-item>
         <el-form-item label="创建事由：">
           <template>
-            <template v-if="sizeForm.edit">
+            <template v-if="edit">
               <el-input v-show="downIcon" type="textarea" v-model="sizeForm.cause"></el-input>
             </template>
             <span else v-show="!downIcon">{{sizeForm.cause}}</span>
           </template>
         </el-form-item>
       </el-form>
-      <el-button class="button" @click="onSubmit" type="primary" v-if="sizeForm.edit">提交</el-button>
+      <div class="btn-box">
+         <el-button
+            class="cancel"
+            round
+          >取消</el-button>
+          <el-button
+            class="save"
+            type="primary"
+            @click="onSubmit"
+            round
+          >保存</el-button>
+      </div>
     </div>
   </div>
 </template>
@@ -62,20 +73,20 @@ export default {
         can: '222',
         founder: '333',
         time: '44',
-        cause: '创建事由示例创建事由示例创建事由示例创建创建事由示例创建事由示例创建事由示例创建',
-        edit: false,
-        downIcon: false
+        cause: '创建事由示例创建事由示例创建事由示例创建创建事由示例创建事由示例创建事由示例创建'
       },
+      edit: false,
+      downIcon: false,
       button: ''
     }
   },
   methods: {
     choosePer () {
-      this.sizeForm.edit = !this.sizeForm.edit
+      this.edit = !this.edit
       this.downIcon = !this.downIcon
     },
     onSubmit () {
-      this.sizeForm.edit = true
+      this.edit = true
     }
   }
 }
@@ -160,6 +171,11 @@ export default {
 }
 .el-form-item--mini /deep/ .el-form-item__content{
   line-height: 0;
+}
+.btn-box {
+  width: 100%;
+  text-align: center;
+  padding:20px 0;
 }
 .button{
   margin-top:10px;

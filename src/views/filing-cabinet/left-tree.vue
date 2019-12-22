@@ -193,11 +193,10 @@ export default {
       }, 500)
     },
     handelNodeClick (obj, node, el) {
-      console.log(obj)
       if (obj.nodeType === 'pf') {
         this.$router.push({name: 'formFamily', params: {a: 123}})
       } else if (obj.nodeType === 'pg') {
-        this.$router.push({name: 'formGeneration', params: {a: 123}})
+        // this.$router.push({name: 'formGeneration', params: {a: 123}})
       }
     }
 

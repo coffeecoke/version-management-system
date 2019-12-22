@@ -12,8 +12,8 @@
             label-width="100px"
           >
             <template
-              v-if="formRepre.edit"
-              v-show="formRepre.boxshow"
+              v-if="edit"
+              v-show="boxshow"
             >
               <el-form-item label="产品名称：">
                 <el-input v-model="formRepre.name"></el-input>
@@ -21,7 +21,7 @@
             </template>
             <ul
               else
-              v-show="!formRepre.boxshow"
+              v-show="!boxshow"
               class="ulList"
             >
               <li>
@@ -33,8 +33,8 @@
               </li>
             </ul>
             <template
-              v-if="formRepre.edit"
-              v-show="formRepre.boxshow"
+              v-if="edit"
+              v-show="boxshow"
             >
               <el-form-item label="英文缩写：">
                 <el-input v-model="formRepre.sx"></el-input>
@@ -42,7 +42,7 @@
             </template>
             <ul
               else
-              v-show="!formRepre.boxshow"
+              v-show="!boxshow"
               class="ulList"
             >
               <li>
@@ -54,8 +54,8 @@
               </li>
             </ul>
             <template
-              v-if="formRepre.edit"
-              v-show="formRepre.boxshow"
+              v-if="edit"
+              v-show="boxshow"
             >
               <el-form-item label="产品类型：">
                 <el-select
@@ -75,7 +75,7 @@
             </template>
             <ul
               else
-              v-show="!formRepre.boxshow"
+              v-show="!boxshow"
               class="ulList"
             >
               <li>
@@ -87,8 +87,8 @@
               </li>
             </ul>
             <template
-              v-if="formRepre.edit"
-              v-show="formRepre.boxshow"
+              v-if="edit"
+              v-show="boxshow"
             >
               <el-form-item label="产品接口类型：">
                 <el-select
@@ -108,7 +108,7 @@
             </template>
             <ul
               else
-              v-show="!formRepre.boxshow"
+              v-show="!boxshow"
               class="ulList"
             >
               <li>
@@ -120,8 +120,8 @@
               </li>
             </ul>
             <template
-              v-if="formRepre.edit"
-              v-show="formRepre.boxshow"
+              v-if="edit"
+              v-show="boxshow"
             >
               <el-form-item label="创建时间：">
                 <el-date-picker
@@ -135,7 +135,7 @@
             </template>
             <ul
               else
-              v-show="!formRepre.boxshow"
+              v-show="!boxshow"
               class="ulList"
             >
               <li>
@@ -147,8 +147,8 @@
               </li>
             </ul>
             <template
-              v-if="formRepre.edit"
-              v-show="formRepre.boxshow"
+              v-if="edit"
+              v-show="boxshow"
             >
               <el-form-item label="产品经理：">
                 <el-input v-model="formRepre.manage"></el-input>
@@ -156,7 +156,7 @@
             </template>
             <ul
               else
-              v-show="!formRepre.boxshow"
+              v-show="!boxshow"
               class="ulList"
             >
               <li>
@@ -168,8 +168,8 @@
               </li>
             </ul>
             <template
-              v-if="formRepre.edit"
-              v-show="formRepre.boxshow"
+              v-if="edit"
+              v-show="boxshow"
             >
               <el-form-item label="创建事由：">
                 <el-input
@@ -180,7 +180,7 @@
             </template>
             <ul
               else
-              v-show="!formRepre.boxshow"
+              v-show="!boxshow"
               class="ulList"
             >
               <li>
@@ -228,8 +228,7 @@
         </div>
       </div>
       <div class="btn-box">
-        <div class="btn">
-          <el-button
+         <el-button
             class="cancel"
             round
           >取消</el-button>
@@ -239,7 +238,6 @@
             @click="onSubmit"
             round
           >保存</el-button>
-        </div>
       </div>
     </div>
   </div>
@@ -264,16 +262,17 @@ export default {
         writ: '版本登记版本登记版本登记版本登记版本登记版本登记',
         url: 'http://10.10.38',
         location: 'http://10.10.2',
-        admin: 'admin/admin',
-        edit: true,
-        boxshow: true
-      }
+        admin: 'admin/admin'
+
+      },
+      edit: true,
+      boxshow: true
     }
   },
   methods: {
     onSubmit () {
-      this.formRepre.edit = false
-      this.formRepre.boxshow = false
+      this.edit = false
+      this.boxshow = false
     }
   }
 }
@@ -282,11 +281,12 @@ export default {
 .form-box {
   padding: 20px;
   display: flex;
+  justify-content: space-between;
   .left-box {
-    width: 50%;
+    width: 48%;
   }
   .right-box {
-    flex: 1;
+    width: 48%;
   }
 }
 .form-box /deep/ .el-input,
@@ -304,20 +304,10 @@ export default {
 }
 .btn-box {
   width: 100%;
-  height: 100px;
-  // background: #ccc;
-  position: fixed;
-  bottom: 0px;
+  text-align: center;
+  padding:20px 0;
 }
-.btn {
-  display: block;
-  margin: 0 auto;
-  width: 100%;
-  position: absolute;
-  left: 50%;
-  transform: translateX(-30%);
-  top: 10px;
-}
+
 .btn .cancel {
   text-align: center;
   background: #ebebeb;

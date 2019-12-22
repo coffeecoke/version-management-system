@@ -1,55 +1,124 @@
 <template>
   <div class="box">
+    <template
+              v-if="edit"
+              v-show="boxshow"
+            >
     <div class="box-header">
-      <h3 class="header-title"> <span class="num">02</span>查看产品族</h3>
-      <span class="edit" :model="model1" @click="choosePer()"><i class="el-icon-edit"></i>编辑</span>
+      <h3 class="header-title"> <span class="num">02</span>查看产品代</h3>
+    </div>
+    </template>
+    <div else v-show="!boxshow" class="box-header">
+      <h3 class="header-title"> <span class="num">02</span>查看产品代</h3>
+      <span class="edit" @click="onEdit()"><i class="el-icon-edit"></i>编辑</span>
     </div>
     <div class="box-body">
+      <div class="form-box">
       <el-form ref="form" :model="sizeForm" label-width="120px" size="mini">
-        <el-form-item label="产品族名称：">
-          <template>
+        <template v-if="edit">
+          <el-form-item label="产品族名称：">
+              <el-input v-show="boxshow" v-model="sizeForm.name"></el-input>
+          </el-form-item>
+        </template>
+         <ul
+              else
+              v-show="!boxshow"
+              class="ulList"
+            >
+              <li>
+                <span class="leftName">产品族名称：</span>
+                <el-input
+                  class="leftValue"
+                  v-model="sizeForm.name"
+                ></el-input>
+              </li>
+            </ul>
             <template v-if="edit">
-              <el-input v-show="downIcon" v-model="sizeForm.name"></el-input>
-            </template>
-            <span v-show="!downIcon" else>{{sizeForm.name}}</span>
-          </template>
-        </el-form-item>
         <el-form-item label=" 英文缩写：">
-          <template>
-            <template v-if="edit">
-              <el-input v-show="downIcon" v-model="sizeForm.can"></el-input>
-            </template>
-            <span else v-show="!downIcon">{{sizeForm.can}}</span>
-          </template>
+
+              <el-input v-show="boxshow" v-model="sizeForm.can"></el-input>
+
         </el-form-item>
+        </template>
+        <ul
+              else
+              v-show="!boxshow"
+              class="ulList"
+            >
+              <li>
+                <span class="leftName">英文缩写：</span>
+                <el-input
+                  class="leftValue"
+                  v-model="sizeForm.name"
+                ></el-input>
+              </li>
+            </ul>
+            <template v-if="edit">
         <el-form-item label="创建人：">
-          <template>
-            <template v-if="edit">
-              <el-input v-show="downIcon" v-model="sizeForm.founder"></el-input>
-            </template>
-            <span else v-show="!downIcon">{{sizeForm.founder}}</span>
-          </template>
+
+              <el-input v-show="boxshow" v-model="sizeForm.founder"></el-input>
+
         </el-form-item>
+        </template>
+        <ul
+              else
+              v-show="!boxshow"
+              class="ulList"
+            >
+              <li>
+                <span class="leftName">创建人：</span>
+                <el-input
+                  class="leftValue"
+                  v-model="sizeForm.founder"
+                ></el-input>
+              </li>
+            </ul>
+            <template v-if="edit">
         <el-form-item label="创建时间：">
-          <template>
-            <template v-if="edit">
-              <el-date-picker v-show="downIcon" value-format="yyyy-MM-dd" class="ipt" v-model="sizeForm.time" type="date"
+              <el-date-picker v-show="boxshow" value-format="yyyy-MM-dd" class="ipt" v-model="sizeForm.time" type="date"
               placeholder="选择日期"></el-date-picker>
-            </template>
-            <span else v-show="!downIcon">{{sizeForm.time}}</span>
-          </template>
         </el-form-item>
-        <el-form-item label="创建事由：">
-          <template>
+        </template>
+        <ul
+              else
+              v-show="!boxshow"
+              class="ulList"
+            >
+              <li>
+                <span class="leftName">创建时间：</span>
+                <el-input
+                  class="leftValue"
+                  v-model="sizeForm.time"
+                ></el-input>
+              </li>
+            </ul>
             <template v-if="edit">
-              <el-input v-show="downIcon" type="textarea" v-model="sizeForm.cause"></el-input>
-            </template>
-            <span else v-show="!downIcon">{{sizeForm.cause}}</span>
-          </template>
+        <el-form-item label="创建事由：">
+              <el-input v-show="boxshow" type="textarea" v-model="sizeForm.cause"></el-input>
         </el-form-item>
+        </template>
+        <ul
+              else
+              v-show="!boxshow"
+              class="ulList last-list"
+            >
+              <li>
+                <span class="leftName">创建事由：</span>
+                <el-input
+                  type="textarea"
+                  class="leftValue"
+                  v-model="sizeForm.cause"
+                ></el-input>
+              </li>
+            </ul>
       </el-form>
+      <template
+              v-if="edit"
+              v-show="boxshow"
+            >
       <div class="btn-box">
-         <el-button
+        <div class="btn">
+          <el-button
             class="cancel"
             round
           >取消</el-button>
@@ -59,6 +128,9 @@
             @click="onSubmit"
             round
           >保存</el-button>
+        </div>
+      </div>
+      </template>
       </div>
     </div>
   </div>
@@ -75,18 +147,19 @@ export default {
         time: '44',
         cause: '创建事由示例创建事由示例创建事由示例创建创建事由示例创建事由示例创建事由示例创建'
       },
-      edit: false,
-      downIcon: false,
-      button: ''
+      button: '',
+      edit: true,
+      boxshow: true
     }
   },
   methods: {
-    choosePer () {
-      this.edit = !this.edit
-      this.downIcon = !this.downIcon
-    },
     onSubmit () {
+      this.edit = false
+      this.boxshow = false
+    },
+    onEdit () {
       this.edit = true
+      this.boxshow = true
     }
   }
 }
@@ -114,71 +187,81 @@ export default {
     width:50%;
   }
 }
+.form-box /deep/ .el-input,
+.form-box /deep/ .el-textarea {
+  width: 100%;
+}
 .el-form .el-form-item:last-child{
   height:200px;
 }
-.el-form-item--mini /deep/ .el-form-item__label{
-      height:40px;
-      line-height: 40px;
-      background: #F5F5F5;
-      text-align: left;
-      padding-left:10px;
-      border-top:solid 1px #DCDFE6;
-}
-.el-input--mini /deep/ .el-input__inner{
-      height:40px;
-      border-radius: 0;
-      margin-top:0px;
-      border-radius: 0;
-      border:none;
-      border-top:solid 1px #ccc;
-      border-right:solid 1px #ccc;
-}
- .el-form /deep/ .el-form-item{
-    margin-bottom:0px;
- }
- .el-textarea /deep/ .el-textarea__inner{
-   border-radius: 0;
-   border-left:none;
- }
- .el-form .el-form-item:last-child /deep/  .el-form-item__label{
-  height:200px;
-}
-.el-form .el-form-item:last-child /deep/  .el-textarea__inner{
-  height:200px;
-}
-.el-date-editor{
-  width:100%;
-}
-.el-form-item span{
-  border-top:solid 1px #ccc;
-  border-right:solid 1px #ccc;
-  height:40px;
+.el-input /deep/ .el-input__inner {
+  height: 40px;
   line-height: 40px;
-  margin-top:0;
-  // padding:19px 0;
-  width:100%;
-  display: inline-block;
-  padding-left:15px;
-  font-size:12px;
-  color: #606266;
 }
- .el-form .el-form-item:last-child /deep/  span{
-  height:200px;
-  line-height: 20px;
-  padding-top:4px;
-  border-bottom:solid 1px #ccc;
+.el-select /deep/ .el-input__inner {
+  height: 40px;
+  line-height: 40px;
 }
-.el-form-item--mini /deep/ .el-form-item__content{
-  line-height: 0;
+.el-textarea /deep/ .el-textarea__inner {
+  height: 120px;
 }
-.btn-box {
+.btn {
+  margin: 10px auto;
   width: 100%;
   text-align: center;
-  padding:20px 0;
 }
-.button{
-  margin-top:10px;
-  margin-left:20px;
+.btn .cancel {
+  background: #ebebeb;
+  border: none;
+  min-width: 100px;
+}
+.btn .save {
+  background: #5d70ea;
+  border: none;
+  min-width: 100px;
+}
+.ulList:last-child{
+  border-bottom:solid 1px #ccc;
+}
+.ulList{
+  width:50%;
+}
+.ulList li {
+  display: flex;
+}
+.ulList li span {
+  // width:110px;
+  height: 40px;
+  line-height: 40px;
+  font-size:12px;
+  padding-left:5px;
+  display: block;
+  border-top:solid 1px #ccc;
+  border-left:solid 1px #ccc;
+}
+.leftName {
+  width: 140px;
+  background: #F5F5F5;
+}
+.rightValue {
+  background: #fff;
+}
+.leftValue /deep/ .el-input__inner{
+  border-radius: 0px!important;
+  border-bottom:0;
+  border-top: solid 1px #ccc;
+  outline: none;
+}
+.leftValue .el-input:last-child /deep/ .el-input__inner{
+  border-bottom:solid 1px #ccc!important;
+}
+.last-list li{
+  height:120px!important;
+}
+.last-list li span{
+  height:100%;
+}
+.last-list li .leftValue .el-input__inner{
+  height:100%!important;
 }
 </style>

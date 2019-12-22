@@ -5,7 +5,7 @@
               v-show="boxshow"
             >
     <div class="box-header">
-      <h3 class="header-title"> <span class="num">02</span>查看产品代</h3>
+      <h3 class="header-title"> <span class="num">02</span>查看产品族</h3>
     </div>
     </template>
     <div else v-show="!boxshow" class="box-header">

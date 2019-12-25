@@ -5,11 +5,11 @@
               v-show="boxshow"
             >
     <div class="box-header">
-      <h3 class="header-title"> <span class="num">02</span>新增版本</h3>
+      <h3 class="header-title"> <span class="num">02</span>产品版本</h3>
     </div>
     </template>
     <div else v-show="!boxshow" class="box-header">
-      <h3 class="header-title"> <span class="num">02</span>新增版本</h3>
+      <h3 class="header-title"> <span class="num">02</span>查看产品版本</h3>
       <span class="edit" @click="onEdit()"><i class="el-icon-edit"></i>编辑</span>
     </div>
     <div class="box-body">

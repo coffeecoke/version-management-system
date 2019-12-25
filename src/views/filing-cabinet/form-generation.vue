@@ -1,16 +1,23 @@
 <template>
   <div class="box">
     <template
-              v-if="edit"
-              v-show="boxshow"
-            >
-    <div class="box-header">
-      <h3 class="header-title"> <span class="num">02</span>查看产品代</h3>
-    </div>
+      v-if="edit"
+      v-show="boxshow"
+    >
+      <div class="box-header">
+        <h3 class="header-title"> <span class="num">02</span>查看产品代</h3>
+      </div>
     </template>
-    <div else v-show="!boxshow" class="box-header">
+    <div
+      else
+      v-show="!boxshow"
+      class="box-header"
+    >
       <h3 class="header-title"> <span class="num">02</span>查看产品代</h3>
-      <span class="edit" @click="onEdit()"><i class="el-icon-edit"></i>编辑</span>
+      <span
+        class="edit"
+        @click="onEdit()"
+      ><i class="el-icon-edit"></i>编辑</span>
     </div>
     <div class="box-body">
       <div class="form-box">
@@ -209,19 +216,19 @@
             :model="formRepre"
             label-width="100px"
           >
-          <template
+            <template
               v-if="edit"
               v-show="boxshow"
             >
-            <el-form-item label="版本变更记录：">
-              <el-input
-                type="textarea"
-                v-model="formRepre.writ"
-                readonly
-              ></el-input>
-            </el-form-item>
-          </template>
-          <ul
+              <el-form-item label="版本变更记录：">
+                <el-input
+                  type="textarea"
+                  v-model="formRepre.writ"
+                  readonly
+                ></el-input>
+              </el-form-item>
+            </template>
+            <ul
               else
               v-show="!boxshow"
               class="ulList last-list"
@@ -239,12 +246,12 @@
               v-if="edit"
               v-show="boxshow"
             >
-            <el-form-item label="演示环境URL：">
-              <el-input
-                v-model="formRepre.url"
-                readonly
-              ></el-input>
-            </el-form-item>
+              <el-form-item label="演示环境URL：">
+                <el-input
+                  v-model="formRepre.url"
+                  readonly
+                ></el-input>
+              </el-form-item>
             </template>
             <ul
               else
@@ -263,12 +270,12 @@
               v-if="edit"
               v-show="boxshow"
             >
-            <el-form-item label="数据库地址：">
-              <el-input
-                v-model="formRepre.location"
-                readonly
-              ></el-input>
-            </el-form-item>
+              <el-form-item label="数据库地址：">
+                <el-input
+                  v-model="formRepre.location"
+                  readonly
+                ></el-input>
+              </el-form-item>
             </template>
             <ul
               else
@@ -287,12 +294,12 @@
               v-if="edit"
               v-show="boxshow"
             >
-            <el-form-item label="用户名/密码：">
-              <el-input
-                v-model="formRepre.admin"
-                disabled
-              ></el-input>
-            </el-form-item>
+              <el-form-item label="用户名/密码：">
+                <el-input
+                  v-model="formRepre.admin"
+                  disabled
+                ></el-input>
+              </el-form-item>
             </template>
             <ul
               else
@@ -325,7 +332,7 @@
             @click="onSubmit"
             round
           >保存</el-button>
-      </div>
+        </div>
       </template>
     </div>
   </div>
@@ -420,8 +427,8 @@ export default {
   height: 40px;
   line-height: 40px;
 }
-.ulList:last-child{
-  border-bottom:solid 1px #ccc;
+.ulList:last-child {
+  border-bottom: solid 1px #ccc;
 }
 .ulList li {
   display: flex;
@@ -430,42 +437,42 @@ export default {
   // width:110px;
   height: 40px;
   line-height: 40px;
-  font-size:12px;
-  padding-left:5px;
+  font-size: 12px;
+  padding-left: 5px;
   display: block;
-  border-top:solid 1px #ccc;
-  border-left:solid 1px #ccc;
+  border-top: solid 1px #ccc;
+  border-left: solid 1px #ccc;
 }
 .leftName {
   width: 140px;
-  background: #F5F5F5;
+  background: #f5f5f5;
 }
 .rightValue {
   background: #fff;
 }
-.leftValue /deep/ .el-input__inner{
-  border-radius: 0px!important;
-  border-bottom:0;
+.leftValue /deep/ .el-input__inner {
+  border-radius: 0px !important;
+  border-bottom: 0;
   border-top: solid 1px #ccc;
   outline: none;
 }
-.leftValue .el-input:last-child /deep/ .el-input__inner{
-  border-bottom:solid 1px #ccc!important;
+.leftValue .el-input:last-child /deep/ .el-input__inner {
+  border-bottom: solid 1px #ccc !important;
 }
-.box-header{
+.box-header {
   display: flex;
   justify-content: space-between;
 }
-.edit{
-  padding-right:20px;
+.edit {
+  padding-right: 20px;
 }
-.last-list li{
-  height:120px!important;
+.last-list li {
+  height: 120px !important;
 }
-.last-list li span{
-  height:100%;
+.last-list li span {
+  height: 100%;
 }
-.last-list li .leftValue .el-input__inner{
-  height:100%!important;
+.last-list li .leftValue .el-input__inner {
+  height: 100% !important;
 }
 </style>

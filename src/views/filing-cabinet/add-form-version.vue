@@ -1,0 +1,246 @@
+<template>
+  <div class="box">
+    <div class="box-header">
+      <h3 class="header-title"> <span class="num">02</span>新增版本</h3>
+    </div>
+    <div class="box-body">
+      <div class="form-box">
+        <div class="left-box">
+          <el-form
+            :label-position="labelPosition"
+            :model="formRepre"
+            label-width="100px"
+          >
+            <el-form-item label="版本编号：">
+              <el-input v-model="formRepre.vNum"></el-input>
+            </el-form-item>
+            <el-form-item label="发版编号：">
+              <el-select
+                v-model="formRepre.eNum"
+                placeholder="请选择活动区域"
+              >
+                <el-option
+                  :label="formRepre.jk1"
+                  :value="formRepre.jk1"
+                ></el-option>
+                <el-option
+                  :label="formRepre.jk2"
+                  :value="formRepre.jk2"
+                ></el-option>
+              </el-select>
+            </el-form-item>
+            <el-form-item label="版本名称：">
+              <el-input v-model="formRepre.name"></el-input>
+            </el-form-item>
+            <el-form-item label="研发项目编号：">
+              <el-input v-model="formRepre.pNum"></el-input>
+            </el-form-item>
+            <el-form-item label="演示环境地址：">
+              <el-input v-model="formRepre.dUrl"></el-input>
+            </el-form-item>
+            <el-form-item label="用户名：">
+              <el-input v-model="formRepre.username"></el-input>
+            </el-form-item>
+            <el-form-item label="发版说明：">
+              <el-input
+                type="textarea"
+                v-model="formRepre.eNodes"
+              ></el-input>
+            </el-form-item>
+            <el-form-item label="优化功能：">
+              <el-input
+                type="textarea"
+                v-model="formRepre.oFunction"
+              ></el-input>
+            </el-form-item>
+          </el-form>
+        </div>
+        <div class="right-box">
+          <el-form
+            :label-position="labelPosition"
+            :model="formRepre"
+            label-width="100px"
+          >
+            <el-form-item label="创建时间：">
+              <el-input v-model="formRepre.time"></el-input>
+            </el-form-item>
+            <el-form-item label="发版负责人：">
+              <el-input v-model="formRepre.ePerson"></el-input>
+            </el-form-item>
+            <el-form-item label="发版资料SVN地址：">
+              <el-input
+                v-model="formRepre.svn"
+                readonly
+              ></el-input>
+            </el-form-item>
+            <el-form-item label="演示数据库：">
+              <el-input v-model="formRepre.sql"></el-input>
+            </el-form-item>
+            <el-form-item label="密码">
+              <el-input v-model="formRepre.password"></el-input>
+            </el-form-item>
+            <el-form-item label="新增功能：">
+              <el-input v-model="formRepre.addFun"></el-input>
+            </el-form-item>
+            <el-form-item label="遗留问题：">
+              <el-input
+                type="textarea"
+                v-model="formRepre.question"
+              ></el-input>
+            </el-form-item>
+          </el-form>
+        </div>
+      </div>
+      <div class="btn">
+        <el-button
+          class="cancel"
+          round
+        >取消</el-button>
+        <el-button
+          class="save"
+          type="primary"
+          @click="onSubmit"
+          round
+        >保存</el-button>
+      </div>
+    </div>
+  </div>
+</template>
+<script>
+export default {
+  data () {
+    return {
+      labelPosition: 'right',
+      formRepre: {
+        vNum: '',
+        eNum: '',
+        name: '',
+        pNum: '',
+        jk1: '公报',
+        jk2: '私报',
+        dUrl: '',
+        username: '',
+        eNodes: '',
+        oFunction: '',
+
+        time: '',
+        ePerson: '',
+        svn: '',
+        sql: '',
+        password: '',
+        addFun: '',
+        question: ''
+      }
+    }
+  },
+  methods: {
+    onSubmit () {
+
+    },
+    onEdit () {
+
+    }
+  }
+}
+</script>
+<style lang="scss" scoped>
+.form-box {
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  .left-box {
+    width: 48%;
+  }
+  .right-box {
+    width: 48%;
+  }
+}
+.form-box /deep/ .el-input,
+.form-box /deep/ .el-textarea {
+  width: 100%;
+}
+.el-textarea /deep/ .el-textarea__inner {
+  height: 120px;
+}
+.el-form-item {
+  margin-bottom: 8px;
+}
+.el-select {
+  display: block;
+}
+.btn {
+  margin: 10px auto;
+  width: 100%;
+  text-align: center;
+}
+
+.btn .cancel {
+  background: #ebebeb;
+  border: none;
+  min-width: 100px;
+}
+.btn .save {
+  background: #5d70ea;
+  border: none;
+  min-width: 100px;
+}
+.el-form-item /deep/ .el-form-item__label {
+  font-size: 12px;
+}
+.el-input /deep/ .el-input__inner {
+  height: 40px;
+  line-height: 40px;
+}
+.el-select /deep/ .el-input__inner {
+  height: 40px;
+  line-height: 40px;
+}
+.ulList:last-child {
+  // border-bottom:solid 1px #ccc;
+}
+.ulList li {
+  display: flex;
+}
+.ulList li span {
+  // width:110px;
+  height: 40px;
+  line-height: 40px;
+  font-size: 12px;
+  padding-left: 5px;
+  display: block;
+  border-top: solid 1px #ccc;
+  border-left: solid 1px #ccc;
+}
+.leftName {
+  width: 140px;
+  background: #f5f5f5;
+}
+.rightValue {
+  background: #fff;
+}
+.leftValue /deep/ .el-input__inner {
+  border-radius: 0px !important;
+  border-bottom: 0;
+  border-top: solid 1px #ccc;
+  outline: none;
+}
+.leftValue .el-input:last-child /deep/ .el-input__inner {
+  border-bottom: solid 1px #ccc !important;
+}
+.box-header {
+  display: flex;
+  justify-content: space-between;
+}
+.edit {
+  padding-right: 20px;
+}
+.last-list li {
+  height: 120px !important;
+}
+.last-list li span {
+  height: 100%;
+}
+.last-list li .leftValue .el-input__inner {
+  height: 100% !important;
+}
+</style>

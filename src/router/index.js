@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 Vue.use(Router)
 
-export default new Router({
+const router = new Router({
   routes: [
     {
       path: '/',
@@ -36,20 +36,37 @@ export default new Router({
               component: () => import('@/views/filing-cabinet/form-generation')
             },
             {
-              path: 'new-version',
-              name: 'newVersion',
+              path: 'add-form-generation',
+              name: 'addFormGeneration',
               meta: {
-                title: '新增产品'
+                title: '新增产品代'
               },
-              component: () => import('@/views/filing-cabinet/new-version')
+              component: () => import('@/views/filing-cabinet/add-form-generation')
+
             },
             {
-              path: 'package',
-              name: 'packAge',
+              path: 'add-form-version',
+              name: 'addFormVersion',
+              meta: {
+                title: '新增产品版本'
+              },
+              component: () => import('@/views/filing-cabinet/add-form-version')
+            },
+            {
+              path: 'form-version',
+              name: 'formVersion',
+              meta: {
+                title: '产品版本'
+              },
+              component: () => import('@/views/filing-cabinet/form-version')
+            },
+            {
+              path: 'add-form-package',
+              name: 'addFormPackage',
               meta: {
                 title: '程序包'
               },
-              component: () => import('@/views/filing-cabinet/package')
+              component: () => import('@/views/filing-cabinet/add-form-package')
             }
           ]
         },
@@ -64,6 +81,22 @@ export default new Router({
           component: () => import('@/views/summary-troubleshooting')
         }
       ]
+    },
+    {
+      path: '/404',
+      name: '404',
+      component: () => import('@/views/404')
     }
   ]
 })
+router.beforeEach((to, from, next) => {
+  if (to.matched.length === 0) {
+    from.name ? next({
+      name: from.name
+    }) : next('/404')
+  } else {
+    // 如果匹配正常跳转
+    next()
+  }
+})
+export default router

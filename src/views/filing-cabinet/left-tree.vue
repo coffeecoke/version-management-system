@@ -19,13 +19,16 @@
         >
           <span>{{ node.label }}</span>
           <template v-if="data.nodeType==='pf'">
-            <span class="el-icon-plus">新增产品代</span>
+            <span class="el-icon-plus" @click.stop="addFormGeneration(data)">新增产品代</span>
           </template>
           <template v-if="data.nodeType==='pg'">
-            <span class="el-icon-circle-plus"></span>
+            <span class="el-icon-circle-plus" @click.stop="addFormVersion(data)"></span>
           </template>
           <template v-if="data.nodeType==='pv'">
             <span class="fa fa-download">全部下载</span>
+          </template>
+          <template v-if="data.nodeType==='pk'">
+            <span class="el-icon-folder-add" @click.stop="addPackage(data)"></span>
           </template>
         </span>
       </elTree2>
@@ -235,17 +238,35 @@ export default {
         ptd: 补丁包文档说明
   */
       if (obj.nodeType === 'pf') {
-        this.$router.push({ name: 'formFamily', params: { a: 123 } })
+        this.$router.push({ name: 'formFamily', params: { a: obj } })
       } else if (obj.nodeType === 'pg') {
         this.$router.push({ name: 'formGeneration', params: { a: 123 } })
       } else if (obj.nodeType === 'pv') {
-        this.$router.push({ name: 'newVersion', params: { a: 123 } })
-      } else if (obj.nodeType === 'pk') {
-        this.$router.push({ name: 'packAge', params: { a: 123 } })
+        this.$router.push({ name: 'formVersion', params: { a: 123 } })
       }
+    },
+    addFormGeneration (data) {
+      // 新增产品代
+      this.$router.push({
+        path: '/filing-cabinet/add-form-generation',
+        query: {id: data.id}
+      })
+    },
+    addFormVersion (data) {
+      // 新增产品版本
+      this.$router.push({
+        path: '/filing-cabinet/add-form-version',
+        query: {id: data.id}
+      })
+    },
+    addPackage (data) {
+      // 新增程序包或者补丁
+      this.$router.push({
+        path: '/filing-cabinet/add-form-package',
+        query: {id: data.id}
+      })
     }
   },
-
   activated () {}
 }
 </script>
@@ -262,6 +283,9 @@ export default {
     margin-right: 5px;
   }
 }
+.box-body {
+  padding-right:5px;
+}
 // tree
 .el-tree {
   padding-top: 10px;
@@ -271,18 +295,23 @@ export default {
 }
 .pf .el-icon-plus {
   position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
   right: 20px;
   color: #5d70ea;
   font-size: 12px;
+  top: 0;
+  bottom: 0;
+  line-height: 36px;
 }
 .pg .el-icon-circle-plus {
   position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  right: 20px;
+  right: 0px;
   color: #5d70ea;
+  font-size: 20px;
+  top: 0;
+  bottom: 0;
+  width:40px;
+  text-align: center;
+  line-height: 34px;
 }
 .pv .fa-download {
   position: absolute;
@@ -290,6 +319,17 @@ export default {
   transform: translateY(-50%);
   right: 20px;
   color: #5d70ea;
+}
+.pk .el-icon-folder-add {
+  position: absolute;
+  right: 0px;
+  color: #5d70ea;
+  font-size: 18px;
+  top: 0;
+  bottom: 0;
+  width:40px;
+  text-align: center;
+  line-height: 34px;
 }
 .node-name {
   font-size: 12px;
@@ -324,7 +364,7 @@ export default {
   }
 }
 .el-tree .el-tree-node__content {
-  // height:34px;
+  height:34px;
   position: relative;
   border-bottom: 1px solid #e0e0e0;
 }

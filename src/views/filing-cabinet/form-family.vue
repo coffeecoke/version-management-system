@@ -172,8 +172,8 @@ export default {
   justify-content: space-between;
   height:40px;
   padding-left:16px;
-  color:#5d70e9;
-  background-color:#dcdde5;
+  color:#fff;
+  background-color:#5d70e9;
   .num {
     margin-right:5px;
   }

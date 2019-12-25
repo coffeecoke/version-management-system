@@ -5,11 +5,11 @@
               v-show="boxshow"
             >
     <div class="box-header">
-      <h3 class="header-title"> <span class="num">02</span>查看产品代</h3>
+      <h3 class="header-title"> <span class="num">02</span>新增版本</h3>
     </div>
     </template>
     <div else v-show="!boxshow" class="box-header">
-      <h3 class="header-title"> <span class="num">02</span>查看产品代</h3>
+      <h3 class="header-title"> <span class="num">02</span>新增版本</h3>
       <span class="edit" @click="onEdit()"><i class="el-icon-edit"></i>编辑</span>
     </div>
     <div class="box-body">
@@ -24,8 +24,8 @@
               v-if="edit"
               v-show="boxshow"
             >
-              <el-form-item label="产品名称：">
-                <el-input v-model="formRepre.name"></el-input>
+              <el-form-item label="版本编号：">
+                <el-input v-model="formRepre.vNum"></el-input>
               </el-form-item>
             </template>
             <ul
@@ -34,10 +34,10 @@
               class="ulList"
             >
               <li>
-                <span class="leftName">产品名称：</span>
+                <span class="leftName">版本编号：</span>
                 <el-input
                   class="leftValue"
-                  v-model="formRepre.name"
+                  v-model="formRepre.vNum"
                 ></el-input>
               </li>
             </ul>
@@ -45,30 +45,9 @@
               v-if="edit"
               v-show="boxshow"
             >
-              <el-form-item label="英文缩写：">
-                <el-input v-model="formRepre.sx"></el-input>
-              </el-form-item>
-            </template>
-            <ul
-              else
-              v-show="!boxshow"
-              class="ulList"
-            >
-              <li>
-                <span class="leftName">英文缩写：</span>
-                <el-input
-                  class="leftValue"
-                  v-model="formRepre.sx"
-                ></el-input>
-              </li>
-            </ul>
-            <template
-              v-if="edit"
-              v-show="boxshow"
-            >
-              <el-form-item label="产品类型：">
+              <el-form-item label="发版编号：">
                 <el-select
-                  v-model="formRepre.type"
+                  v-model="formRepre.eNum"
                   placeholder="请选择活动区域"
                 >
                   <el-option
@@ -88,10 +67,10 @@
               class="ulList"
             >
               <li>
-                <span class="leftName">产品类型：</span>
+                <span class="leftName">发版编号：</span>
                 <el-input
                   class="leftValue"
-                  v-model="formRepre.type"
+                  v-model="formRepre.eNum"
                 ></el-input>
               </li>
             </ul>
@@ -99,20 +78,10 @@
               v-if="edit"
               v-show="boxshow"
             >
-              <el-form-item label="产品接口类型：">
-                <el-select
-                  v-model="formRepre.jk"
-                  placeholder="请选择活动区域"
-                >
-                  <el-option
-                    :label="formRepre.jk3"
-                    :value="formRepre.jk3"
-                  ></el-option>
-                  <el-option
-                    :label="formRepre.jk4"
-                    :value="formRepre.jk4"
-                  ></el-option>
-                </el-select>
+              <el-form-item label="版本名称：">
+                <el-input
+                  v-model="formRepre.name"
+                ></el-input>
               </el-form-item>
             </template>
             <ul
@@ -121,10 +90,10 @@
               class="ulList"
             >
               <li>
-                <span class="leftName">产品接口类型：</span>
+                <span class="leftName">版本名称：</span>
                 <el-input
                   class="leftValue"
-                  v-model="formRepre.jk"
+                  v-model="formRepre.name"
                 ></el-input>
               </li>
             </ul>
@@ -132,17 +101,138 @@
               v-if="edit"
               v-show="boxshow"
             >
-              <el-form-item label="创建时间：">
-                <el-date-picker
-                  value-format="yyyy-MM-dd"
-                  class="ipt"
-                  v-model="formRepre.time"
-                  type="date"
-                  placeholder="选择日期"
-                ></el-date-picker>
+              <el-form-item label="研发项目编号：">
+                <el-input
+                  v-model="formRepre.pNum"
+                ></el-input>
               </el-form-item>
             </template>
             <ul
+              else
+              v-show="!boxshow"
+              class="ulList"
+            >
+              <li>
+                <span class="leftName">研发项目编号：</span>
+                <el-input
+                  class="leftValue"
+                  v-model="formRepre.pNum"
+                ></el-input>
+              </li>
+            </ul>
+            <template
+              v-if="edit"
+              v-show="boxshow"
+            >
+              <el-form-item label="演示环境地址：">
+                <el-input
+                  v-model="formRepre.dUrl"
+                ></el-input>
+              </el-form-item>
+            </template>
+            <ul
+              else
+              v-show="!boxshow"
+              class="ulList"
+            >
+              <li>
+                <span class="leftName">演示环境地址：</span>
+                <el-input
+                  class="leftValue"
+                  v-model="formRepre.dUrl"
+                ></el-input>
+              </li>
+            </ul>
+            <template
+              v-if="edit"
+              v-show="boxshow"
+            >
+              <el-form-item label="用户名：">
+                <el-input v-model="formRepre.username"></el-input>
+              </el-form-item>
+            </template>
+            <ul
+              else
+              v-show="!boxshow"
+              class="ulList"
+            >
+              <li>
+                <span class="leftName">用户名：</span>
+                <el-input
+                  class="leftValue"
+                  v-model="formRepre.username"
+                ></el-input>
+              </li>
+            </ul>
+            <template
+              v-if="edit"
+              v-show="boxshow"
+            >
+              <el-form-item label="发版说明：">
+                <el-input
+                  type="textarea"
+                  v-model="formRepre.eNodes"
+                ></el-input>
+              </el-form-item>
+            </template>
+            <ul
+              else
+              v-show="!boxshow"
+              class="ulList last-list"
+            >
+              <li>
+                <span class="leftName">发版说明：</span>
+                <el-input
+                  type="textarea"
+                  class="leftValue"
+                  v-model="formRepre.eNodes"
+                ></el-input>
+              </li>
+            </ul>
+            <template
+              v-if="edit"
+              v-show="boxshow"
+            >
+              <el-form-item label="优化功能：">
+                <el-input
+                  type="textarea"
+                  v-model="formRepre.oFunction"
+                ></el-input>
+              </el-form-item>
+            </template>
+            <ul
+              else
+              v-show="!boxshow"
+              class="ulList last-list"
+            >
+              <li>
+                <span class="leftName">优化功能：</span>
+                <el-input
+                  type="textarea"
+                  class="leftValue"
+                  v-model="formRepre.oFunction"
+                ></el-input>
+              </li>
+            </ul>
+          </el-form>
+        </div>
+        <div class="right-box">
+          <el-form
+            :label-position="labelPosition"
+            :model="formRepre"
+            label-width="100px"
+          >
+          <template
+              v-if="edit"
+              v-show="boxshow"
+            >
+            <el-form-item label="创建时间：">
+              <el-input
+                v-model="formRepre.time"
+              ></el-input>
+            </el-form-item>
+          </template>
+          <ul
               else
               v-show="!boxshow"
               class="ulList"
@@ -159,9 +249,11 @@
               v-if="edit"
               v-show="boxshow"
             >
-              <el-form-item label="产品经理：">
-                <el-input v-model="formRepre.manage"></el-input>
-              </el-form-item>
+            <el-form-item label="发版负责人：">
+              <el-input
+                v-model="formRepre.ePerson"
+              ></el-input>
+            </el-form-item>
             </template>
             <ul
               else
@@ -169,10 +261,10 @@
               class="ulList"
             >
               <li>
-                <span class="leftName">产品经理：</span>
+                <span class="leftName">发版负责人：</span>
                 <el-input
                   class="leftValue"
-                  v-model="formRepre.manage"
+                  v-model="formRepre.ePerson"
                 ></el-input>
               </li>
             </ul>
@@ -180,130 +272,117 @@
               v-if="edit"
               v-show="boxshow"
             >
-              <el-form-item label="创建事由：">
-                <el-input
-                  type="textarea"
-                  v-model="formRepre.origin"
-                ></el-input>
-              </el-form-item>
+            <el-form-item label="发版资料SVN地址：">
+              <el-input
+                v-model="formRepre.svn"
+                readonly
+              ></el-input>
+            </el-form-item>
             </template>
             <ul
               else
               v-show="!boxshow"
-              class="ulList last-list"
+              class="ulList"
             >
               <li>
-                <span class="leftName">创建事由：</span>
+                <span class="leftName">发版资料SVN地址：</span>
                 <el-input
-                  type="textarea"
                   class="leftValue"
-                  v-model="formRepre.origin"
+                  v-model="formRepre.svn"
                 ></el-input>
               </li>
             </ul>
-          </el-form>
-        </div>
-        <div class="right-box">
-          <el-form
-            :label-position="labelPosition"
-            :model="formRepre"
-            label-width="100px"
-          >
-          <template
+            <template
               v-if="edit"
               v-show="boxshow"
             >
-            <el-form-item label="版本变更记录：">
+            <el-form-item label="演示数据库：">
+              <el-input
+                v-model="formRepre.sql"
+              ></el-input>
+            </el-form-item>
+            </template>
+            <ul
+              else
+              v-show="!boxshow"
+              class="ulList"
+            >
+              <li>
+                <span class="leftName">演示数据库：</span>
+                <el-input
+                  class="leftValue"
+                  v-model="formRepre.sql"
+                ></el-input>
+              </li>
+            </ul>
+            <template
+              v-if="edit"
+              v-show="boxshow"
+            >
+            <el-form-item label="密码">
+              <el-input
+                v-model="formRepre.password"
+              ></el-input>
+            </el-form-item>
+            </template>
+            <ul
+              else
+              v-show="!boxshow"
+              class="ulList"
+            >
+              <li>
+                <span class="leftName">演示数据库：</span>
+                <el-input
+                  class="leftValue"
+                  v-model="formRepre.password"
+                ></el-input>
+              </li>
+            </ul>
+            <template
+              v-if="edit"
+              v-show="boxshow"
+            >
+            <el-form-item label="新增功能：">
+              <el-input
+                v-model="formRepre.addFun"
+              ></el-input>
+            </el-form-item>
+            </template>
+            <ul
+              else
+              v-show="!boxshow"
+              class="ulList"
+            >
+              <li>
+                <span class="leftName">新增功能：</span>
+                <el-input
+                  class="leftValue"
+                  v-model="formRepre.addFun"
+                ></el-input>
+              </li>
+            </ul>
+            <template
+              v-if="edit"
+              v-show="boxshow"
+            >
+            <el-form-item label="遗留问题：">
               <el-input
                 type="textarea"
-                v-model="formRepre.writ"
-                readonly
+                v-model="formRepre.question"
               ></el-input>
             </el-form-item>
-          </template>
-          <ul
+            </template>
+            <ul
               else
               v-show="!boxshow"
               class="ulList last-list"
             >
               <li>
-                <span class="leftName">版本变更记录：</span>
+                <span class="leftName">遗留问题：</span>
                 <el-input
                   type="textarea"
                   class="leftValue"
-                  v-model="formRepre.writ"
-                ></el-input>
-              </li>
-            </ul>
-            <template
-              v-if="edit"
-              v-show="boxshow"
-            >
-            <el-form-item label="演示环境URL：">
-              <el-input
-                v-model="formRepre.url"
-                readonly
-              ></el-input>
-            </el-form-item>
-            </template>
-            <ul
-              else
-              v-show="!boxshow"
-              class="ulList"
-            >
-              <li>
-                <span class="leftName">演示环境URL：</span>
-                <el-input
-                  class="leftValue"
-                  v-model="formRepre.url"
-                ></el-input>
-              </li>
-            </ul>
-            <template
-              v-if="edit"
-              v-show="boxshow"
-            >
-            <el-form-item label="数据库地址：">
-              <el-input
-                v-model="formRepre.location"
-                readonly
-              ></el-input>
-            </el-form-item>
-            </template>
-            <ul
-              else
-              v-show="!boxshow"
-              class="ulList"
-            >
-              <li>
-                <span class="leftName">数据库地址：</span>
-                <el-input
-                  class="leftValue"
-                  v-model="formRepre.location"
-                ></el-input>
-              </li>
-            </ul>
-            <template
-              v-if="edit"
-              v-show="boxshow"
-            >
-            <el-form-item label="用户名/密码：">
-              <el-input
-                v-model="formRepre.admin"
-                disabled
-              ></el-input>
-            </el-form-item>
-            </template>
-            <ul
-              else
-              v-show="!boxshow"
-              class="ulList"
-            >
-              <li>
-                <span class="leftName">用户名/密码：</span>
-                <el-input
-                  class="leftValue"
-                  v-model="formRepre.admin"
+                  v-model="formRepre.question"
                 ></el-input>
               </li>
             </ul>
@@ -336,21 +415,24 @@ export default {
     return {
       labelPosition: 'right',
       formRepre: {
-        name: '监管报送系统',
-        sx: 'jdcbdhfbh',
-        type: 'APR_WER',
-        jk: '报文类型',
-        jk1: '明细报文类',
-        jk2: '明细报文类',
-        jk3: '明细报文类',
-        jk4: '明细报文类',
-        time: '2019-07-30',
-        manage: 'admin',
-        origin: '版本登记版本登记版本登记版本登记版本登记版本登记',
-        writ: '版本登记版本登记版本登记版本登记版本登记版本登记',
-        url: 'http://10.10.38',
-        location: 'http://10.10.2',
-        admin: 'admin/admin'
+        vNum: '',
+        eNum: '',
+        name: '',
+        pNum: '',
+        jk1: '公报',
+        jk2: '私报',
+        dUrl: '',
+        username: '',
+        eNodes: '',
+        oFunction: '',
+
+        time: '',
+        ePerson: '',
+        svn: '',
+        sql: '',
+        password: '',
+        addFun: '',
+        question: ''
       },
       edit: true,
       boxshow: true
@@ -421,7 +503,7 @@ export default {
   line-height: 40px;
 }
 .ulList:last-child{
-  border-bottom:solid 1px #ccc;
+  // border-bottom:solid 1px #ccc;
 }
 .ulList li {
   display: flex;

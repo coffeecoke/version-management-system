@@ -238,6 +238,10 @@ export default {
         this.$router.push({ name: 'formFamily', params: { a: 123 } })
       } else if (obj.nodeType === 'pg') {
         this.$router.push({ name: 'formGeneration', params: { a: 123 } })
+      } else if (obj.nodeType === 'pv') {
+        this.$router.push({ name: 'newVersion', params: { a: 123 } })
+      } else if (obj.nodeType === 'pk') {
+        this.$router.push({ name: 'packAge', params: { a: 123 } })
       }
     }
   },
@@ -252,8 +256,8 @@ export default {
   align-items: center;
   height: 40px;
   padding-left: 16px;
-  color: #5d70e9;
-  background-color: #dcdde5;
+  color: #fff;
+  background-color: #5d70e9;
   .num {
     margin-right: 5px;
   }

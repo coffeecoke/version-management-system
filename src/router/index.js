@@ -34,6 +34,14 @@ export default new Router({
                 title: '产品代'
               },
               component: () => import('@/views/filing-cabinet/form-generation')
+            },
+            {
+              path: 'add-form-generation',
+              name: 'addFormGeneration',
+              meta: {
+                title: '新增产品代'
+              },
+              component: () => import('@/views/filing-cabinet/add-form-generation')
             }
           ]
         },

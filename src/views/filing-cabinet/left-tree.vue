@@ -19,7 +19,7 @@
         >
           <span>{{ node.label }}</span>
           <template v-if="data.nodeType==='pf'">
-            <span class="el-icon-plus">新增产品代</span>
+            <span class="el-icon-plus" @click.stop="addFormGeneration(data)">新增产品代</span>
           </template>
           <template v-if="data.nodeType==='pg'">
             <span class="el-icon-circle-plus"></span>
@@ -235,10 +235,18 @@ export default {
         ptd: 补丁包文档说明
   */
       if (obj.nodeType === 'pf') {
-        this.$router.push({ name: 'formFamily', params: { a: 123 } })
+        this.$router.push({ name: 'formFamily', params: { a: obj } })
       } else if (obj.nodeType === 'pg') {
-        this.$router.push({ name: 'formGeneration', params: { a: 123 } })
+        this.$router.push({ name: 'formGeneration', params: { a: obj } })
       }
+    },
+    addFormGeneration (data) {
+    // 新增产品代
+      console.log(1)
+      this.$router.push({
+        name: 'addFormGeneration',
+        parms: {data: data}
+      })
     }
   },
 
@@ -257,6 +265,9 @@ export default {
   .num {
     margin-right: 5px;
   }
+}
+.box-body {
+  padding-right:5px;
 }
 // tree
 .el-tree {

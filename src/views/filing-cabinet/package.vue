@@ -5,27 +5,60 @@
   </div>
   <div class="box-body">
     <div class="form-box">
-        <h4 class="package">程序包</h4>
-        <el-form class="form" label-width="120px" :model="formLabelAlign">
-          <el-form-item label="去注释war包：">
-            <el-input v-model="formLabelAlign.name"></el-input>
-          </el-form-item>
-          <el-form-item label="去注释源码包：">
-            <el-input v-model="formLabelAlign.region"></el-input>
-          </el-form-item>
-        </el-form>
-        <p class="notes">注：三种脚本至少有一个不为空</p>
-        <el-form class="form" label-width="120px" :model="formLabelAlign1">
-          <el-form-item label="oracle数据库：">
-            <el-input v-model="formLabelAlign.name"></el-input>
-          </el-form-item>
-          <el-form-item label="DB2数据库：">
-            <el-input v-model="formLabelAlign.region"></el-input>
-          </el-form-item>
-          <el-form-item label="Mysql数据库：">
-            <el-input v-model="formLabelAlign.region"></el-input>
-          </el-form-item>
-        </el-form>
+      <el-tabs v-model="activeName" @tab-click="handleClick">
+        <el-tab-pane label="程序包" name="first">
+          <el-form class="form" :label-position="labelPosition" label-width="120px" :model="formLabelAlign">
+            <el-form-item class="tip inputWid margin-20" label="去注释war包：">
+              <el-input v-model="formLabelAlign.war"></el-input>
+            </el-form-item>
+            <el-form-item class="tip inputWid margin-20" label="去注释源码包：">
+              <el-input v-model="formLabelAlign.region"></el-input>
+            </el-form-item>
+            <el-form-item class="tip inputWid margin-20" label="版本说明：">
+              <el-input type="textarea" v-model="formLabelAlign.region"></el-input>
+            </el-form-item>
+            <p class="notes">注：三种脚本至少有一个不为空</p>
+            <el-form-item class="margin-20" label="oracle数据库：">
+              <el-input v-model="formLabelAlign.ora"></el-input>
+            </el-form-item>
+            <el-form-item class="margin-20" label="DB2数据库：">
+              <el-input v-model="formLabelAlign.db"></el-input>
+            </el-form-item>
+            <el-form-item class="margin-20" label="Mysql数据库：">
+              <el-input v-model="formLabelAlign.sql"></el-input>
+            </el-form-item>
+          </el-form>
+        </el-tab-pane>
+        <el-tab-pane label="补丁" name="second">
+          <el-form class="form" :label-position="labelPosition" label-width="120px" :model="formPatch">
+            <el-form-item class="tip inputWid margin-20" label="补丁程序包：">
+              <el-input v-model="formLabelAlign.war"></el-input>
+            </el-form-item>
+            <el-form-item class="tip inputWid margin-20" label="补丁源码包：">
+              <el-input v-model="formLabelAlign.region"></el-input>
+            </el-form-item>
+            <el-form-item class="tip inputWid margin-20" label="补丁说明：">
+              <el-input type="textarea" v-model="formLabelAlign.explain"></el-input>
+            </el-form-item>
+            <p class="baseInfo">基本信息</p>
+            <el-form-item class="inputInfo margin-20" label="创建时间：">
+              <el-input v-model="formLabelAlign.time"></el-input>
+            </el-form-item>
+            <el-form-item class="inputInfo margin-20" label="负责人：">
+              <el-input v-model="formLabelAlign.leader"></el-input>
+            </el-form-item>
+            <el-form-item class="inputInfo margin-20" label="补丁编号：">
+              <el-input v-model="formLabelAlign.number"></el-input>
+            </el-form-item>
+            <el-form-item class="inputInfo margin-20" label="补丁名称：">
+              <el-input v-model="formLabelAlign.name"></el-input>
+            </el-form-item>
+            <el-form-item class="inputInfo margin-20" label="补丁类型：">
+              <el-input v-model="formLabelAlign.type"></el-input>
+            </el-form-item>
+            </el-form>
+          </el-tab-pane>
+        </el-tabs>
     </div>
     <div class="btn">
          <el-button
@@ -35,7 +68,6 @@
           <el-button
             class="save"
             type="primary"
-            @click="onSubmit"
             round
           >保存</el-button>
       </div>
@@ -46,15 +78,30 @@
 export default {
   data () {
     return {
-      labelPosition: 'right',
+      activeName: 'second',
+      labelPosition: 'left',
       formLabelAlign: {
-        name: '',
-        region: ''
+        war: '',
+        region: '',
+        ora: '',
+        db: '',
+        sql: ''
       },
-      formLabelAlign1: {
+      formPatch: {
+        war: '',
+        region: '',
+        explain: '',
+        time: '',
+        leader: '',
+        number: '',
         name: '',
-        region: ''
+        type: ''
       }
+    }
+  },
+  methods: {
+    handleClick (tab, event) {
+      console.log(tab, event)
     }
   }
 }
@@ -67,16 +114,37 @@ export default {
   padding:10px 0;
 }
 .form{
+  width:100%;
+}
+.el-textarea /deep/ .el-textarea__inner{
+  height:100px;
+}
+.tip /deep/ .el-form-item__label{
+  color:#e13c40;
+}
+.inputWid /deep/ .el-input{
   width:50%;
 }
+.margin-20{
+  margin-bottom:10px;
+}
+.inputInfo /deep/ .el-input{
+  width:40%;
+}
 .notes{
-  width:60%;
+  width:100%;
   height:40px;
   line-height: 40px;
   background:rgba(245,198,90,0.5);
   color: #75673F;
   padding-left:10px;
   margin-bottom:20px;
+}
+.baseInfo{
+  height:40px;
+  line-height: 40px;
+  font-size:20px;
+  font-weight:bolder;
 }
 .btn {
   margin: 10px auto;

@@ -1,7 +1,7 @@
 <template>
   <div class="box">
     <div class="box-header">
-      <h3 class="header-title"> <span class="num">02</span>新增产品代</h3>
+      <h3 class="header-title"> <span class="num">02</span>新增版本</h3>
     </div>
     <div class="box-body">
       <div class="form-box">
@@ -11,15 +11,12 @@
             :model="formRepre"
             label-width="100px"
           >
-            <el-form-item label="产品名称：">
-              <el-input v-model="formRepre.name"></el-input>
+            <el-form-item label="版本编号：">
+              <el-input v-model="formRepre.vNum"></el-input>
             </el-form-item>
-            <el-form-item label="英文缩写：">
-              <el-input v-model="formRepre.sx"></el-input>
-            </el-form-item>
-            <el-form-item label="产品类型：">
+            <el-form-item label="发版编号：">
               <el-select
-                v-model="formRepre.type"
+                v-model="formRepre.eNum"
                 placeholder="请选择活动区域"
               >
                 <el-option
@@ -32,37 +29,28 @@
                 ></el-option>
               </el-select>
             </el-form-item>
-            <el-form-item label="产品接口类型：">
-              <el-select
-                v-model="formRepre.jk"
-                placeholder="请选择活动区域"
-              >
-                <el-option
-                  :label="formRepre.jk3"
-                  :value="formRepre.jk3"
-                ></el-option>
-                <el-option
-                  :label="formRepre.jk4"
-                  :value="formRepre.jk4"
-                ></el-option>
-              </el-select>
+            <el-form-item label="版本名称：">
+              <el-input v-model="formRepre.name"></el-input>
             </el-form-item>
-            <el-form-item label="创建时间：">
-              <el-date-picker
-                value-format="yyyy-MM-dd"
-                class="ipt"
-                v-model="formRepre.time"
-                type="date"
-                placeholder="选择日期"
-              ></el-date-picker>
+            <el-form-item label="研发项目编号：">
+              <el-input v-model="formRepre.pNum"></el-input>
             </el-form-item>
-            <el-form-item label="产品经理：">
-              <el-input v-model="formRepre.manage"></el-input>
+            <el-form-item label="演示环境地址：">
+              <el-input v-model="formRepre.dUrl"></el-input>
             </el-form-item>
-            <el-form-item label="创建事由：">
+            <el-form-item label="用户名：">
+              <el-input v-model="formRepre.username"></el-input>
+            </el-form-item>
+            <el-form-item label="发版说明：">
               <el-input
                 type="textarea"
-                v-model="formRepre.origin"
+                v-model="formRepre.eNodes"
+              ></el-input>
+            </el-form-item>
+            <el-form-item label="优化功能：">
+              <el-input
+                type="textarea"
+                v-model="formRepre.oFunction"
               ></el-input>
             </el-form-item>
           </el-form>
@@ -73,35 +61,37 @@
             :model="formRepre"
             label-width="100px"
           >
-            <el-form-item label="版本变更记录：">
+            <el-form-item label="创建时间：">
+              <el-input v-model="formRepre.time"></el-input>
+            </el-form-item>
+            <el-form-item label="发版负责人：">
+              <el-input v-model="formRepre.ePerson"></el-input>
+            </el-form-item>
+            <el-form-item label="发版资料SVN地址：">
+              <el-input
+                v-model="formRepre.svn"
+                readonly
+              ></el-input>
+            </el-form-item>
+            <el-form-item label="演示数据库：">
+              <el-input v-model="formRepre.sql"></el-input>
+            </el-form-item>
+            <el-form-item label="密码">
+              <el-input v-model="formRepre.password"></el-input>
+            </el-form-item>
+            <el-form-item label="新增功能：">
+              <el-input v-model="formRepre.addFun"></el-input>
+            </el-form-item>
+            <el-form-item label="遗留问题：">
               <el-input
                 type="textarea"
-                v-model="formRepre.writ"
-                readonly
-              ></el-input>
-            </el-form-item>
-            <el-form-item label="演示环境URL：">
-              <el-input
-                v-model="formRepre.url"
-                readonly
-              ></el-input>
-            </el-form-item>
-            <el-form-item label="数据库地址：">
-              <el-input
-                v-model="formRepre.location"
-                readonly
-              ></el-input>
-            </el-form-item>
-            <el-form-item label="用户名/密码：">
-              <el-input
-                v-model="formRepre.admin"
-                disabled
+                v-model="formRepre.question"
               ></el-input>
             </el-form-item>
           </el-form>
         </div>
       </div>
-      <div class="btn-box">
+      <div class="btn">
         <el-button
           class="cancel"
           round
@@ -122,41 +112,33 @@ export default {
     return {
       labelPosition: 'right',
       formRepre: {
+        vNum: '',
+        eNum: '',
         name: '',
-        sx: '',
-        type: '',
-        jk: '',
-        jk1: '',
-        jk2: '',
-        jk3: '',
-        jk4: '',
+        pNum: '',
+        jk1: '公报',
+        jk2: '私报',
+        dUrl: '',
+        username: '',
+        eNodes: '',
+        oFunction: '',
+
         time: '',
-        manage: '',
-        origin: '',
-        writ: '',
-        url: '',
-        location: '',
-        admin: ''
-      },
-      edit: true,
-      boxshow: true
+        ePerson: '',
+        svn: '',
+        sql: '',
+        password: '',
+        addFun: '',
+        question: ''
+      }
     }
   },
   methods: {
-    onSubmit () {}
-  },
-  mounted () {
-    console.log(this.$route)
-  },
-  watch: {
-    '$route': function (to, from) {
-      alert(1)
-      // from 对象中包含当前地址
-      // to 对象中包含目标地址
-      // 其实还有一个next参数的
-      // 这个参数是控制路由是否跳转的
-      // 如果没写，可以不用写next()来代表允许路由跳转，如果写了就必须写next(),否则路由是不会生效的。
-      console.log(to)
+    onSubmit () {
+
+    },
+    onEdit () {
+
     }
   }
 }
@@ -186,11 +168,6 @@ export default {
 .el-select {
   display: block;
 }
-.btn-box {
-  width: 100%;
-  text-align: center;
-  padding:10px;
-}
 .btn {
   margin: 10px auto;
   width: 100%;
@@ -219,7 +196,7 @@ export default {
   line-height: 40px;
 }
 .ulList:last-child {
-  border-bottom: solid 1px #ccc;
+  // border-bottom:solid 1px #ccc;
 }
 .ulList li {
   display: flex;

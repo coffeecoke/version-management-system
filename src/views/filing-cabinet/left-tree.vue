@@ -28,7 +28,7 @@
             <span class="fa fa-download">全部下载</span>
           </template>
           <template v-if="data.nodeType==='pk'">
-            <span class="el-icon-folder-add" @click.stop="addPackage(data)"></span>
+            <span class="el-icon-folder-add"></span>
           </template>
         </span>
       </elTree2>
@@ -238,11 +238,13 @@ export default {
         ptd: 补丁包文档说明
   */
       if (obj.nodeType === 'pf') {
-        this.$router.push({ name: 'formFamily', params: { a: obj } })
+        this.$router.push({ name: 'formFamily', params: { data: obj } })
       } else if (obj.nodeType === 'pg') {
-        this.$router.push({ name: 'formGeneration', params: { a: 123 } })
+        this.$router.push({ name: 'formGeneration', params: { data: obj } })
       } else if (obj.nodeType === 'pv') {
-        this.$router.push({ name: 'formVersion', params: { a: 123 } })
+        this.$router.push({ name: 'formVersion', params: { data: obj } })
+      } else if (obj.nodeType === 'pk') {
+        this.$router.push({ name: 'addFormPackage', params: { data: obj } })
       }
     },
     addFormGeneration (data) {
@@ -266,6 +268,9 @@ export default {
         query: {id: data.id}
       })
     }
+  },
+  mounted () {
+    this.$router.push('/')
   },
   activated () {}
 }

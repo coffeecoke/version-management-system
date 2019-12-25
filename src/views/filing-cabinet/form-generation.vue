@@ -318,11 +318,11 @@
         </div>
       </div>
       <template
-        v-if="edit"
-        v-show="boxshow"
-      >
-        <div class="btn-box">
-          <el-button
+              v-if="edit"
+              v-show="boxshow"
+            >
+      <div class="btn">
+         <el-button
             class="cancel"
             round
           >取消</el-button>
@@ -399,13 +399,6 @@ export default {
 }
 .el-select {
   display: block;
-}
-.btn-box {
-  width: 100%;
-  text-align: center;
-  // background: #ccc;
-  // position: fixed;
-  // bottom: 0px;
 }
 .btn {
   margin: 10px auto;

@@ -201,10 +201,10 @@ export default {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 40px;
-  padding-left: 16px;
-  color: #5d70e9;
-  background-color: #dcdde5;
+  height:40px;
+  padding-left:16px;
+  color:#fff;
+  background-color:#5d70e9;
   .num {
     margin-right: 5px;
   }

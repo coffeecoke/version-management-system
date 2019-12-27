@@ -1,16 +1,21 @@
 <template>
   <div class="box">
     <template
-              v-if="edit"
-              v-show="boxshow"
-            >
-    <div class="box-header">
-      <h3 class="header-title"> <span class="num">02</span>产品版本</h3>
-    </div>
+      v-if="edit"
+    >
+      <div class="box-header">
+        <h3 class="header-title"> <span class="num">02</span>{{boxHeadTitle}}</h3>
+      </div>
     </template>
-    <div else v-show="!boxshow" class="box-header">
-      <h3 class="header-title"> <span class="num">02</span>查看产品版本</h3>
-      <span class="edit" @click="onEdit()"><i class="el-icon-edit"></i>编辑</span>
+    <div
+      v-else
+      class="box-header"
+    >
+      <h3 class="header-title"> <span class="num">02</span>{{boxHeadTitle}}</h3>
+      <span
+        class="edit"
+        @click="onEdit()"
+      ><i class="el-icon-edit"></i>编辑</span>
     </div>
     <div class="box-body">
       <div class="form-box">
@@ -20,17 +25,13 @@
             :model="formRepre"
             label-width="100px"
           >
-            <template
-              v-if="edit"
-              v-show="boxshow"
-            >
+            <template v-if="edit">
               <el-form-item label="版本编号：">
                 <el-input v-model="formRepre.vNum"></el-input>
               </el-form-item>
             </template>
             <ul
-              else
-              v-show="!boxshow"
+              v-else
               class="ulList"
             >
               <li>
@@ -38,13 +39,11 @@
                 <el-input
                   class="leftValue"
                   v-model="formRepre.vNum"
+                  :disabled="true"
                 ></el-input>
               </li>
             </ul>
-            <template
-              v-if="edit"
-              v-show="boxshow"
-            >
+            <template v-if="edit">
               <el-form-item label="发版编号：">
                 <el-select
                   v-model="formRepre.eNum"
@@ -62,8 +61,7 @@
               </el-form-item>
             </template>
             <ul
-              else
-              v-show="!boxshow"
+              v-else
               class="ulList"
             >
               <li>
@@ -74,19 +72,13 @@
                 ></el-input>
               </li>
             </ul>
-            <template
-              v-if="edit"
-              v-show="boxshow"
-            >
+            <template v-if="edit">
               <el-form-item label="版本名称：">
-                <el-input
-                  v-model="formRepre.name"
-                ></el-input>
+                <el-input v-model="formRepre.name"></el-input>
               </el-form-item>
             </template>
             <ul
-              else
-              v-show="!boxshow"
+              v-else
               class="ulList"
             >
               <li>
@@ -97,19 +89,13 @@
                 ></el-input>
               </li>
             </ul>
-            <template
-              v-if="edit"
-              v-show="boxshow"
-            >
+            <template v-if="edit">
               <el-form-item label="研发项目编号：">
-                <el-input
-                  v-model="formRepre.pNum"
-                ></el-input>
+                <el-input v-model="formRepre.pNum"></el-input>
               </el-form-item>
             </template>
             <ul
-              else
-              v-show="!boxshow"
+              v-else
               class="ulList"
             >
               <li>
@@ -120,19 +106,13 @@
                 ></el-input>
               </li>
             </ul>
-            <template
-              v-if="edit"
-              v-show="boxshow"
-            >
+            <template v-if="edit">
               <el-form-item label="演示环境地址：">
-                <el-input
-                  v-model="formRepre.dUrl"
-                ></el-input>
+                <el-input v-model="formRepre.dUrl"></el-input>
               </el-form-item>
             </template>
             <ul
-              else
-              v-show="!boxshow"
+              v-else
               class="ulList"
             >
               <li>
@@ -143,17 +123,13 @@
                 ></el-input>
               </li>
             </ul>
-            <template
-              v-if="edit"
-              v-show="boxshow"
-            >
+            <template v-if="edit">
               <el-form-item label="用户名：">
                 <el-input v-model="formRepre.username"></el-input>
               </el-form-item>
             </template>
             <ul
-              else
-              v-show="!boxshow"
+              v-else
               class="ulList"
             >
               <li>
@@ -164,10 +140,7 @@
                 ></el-input>
               </li>
             </ul>
-            <template
-              v-if="edit"
-              v-show="boxshow"
-            >
+            <template v-if="edit">
               <el-form-item label="发版说明：">
                 <el-input
                   type="textarea"
@@ -176,8 +149,7 @@
               </el-form-item>
             </template>
             <ul
-              else
-              v-show="!boxshow"
+              v-else
               class="ulList last-list"
             >
               <li>
@@ -189,10 +161,7 @@
                 ></el-input>
               </li>
             </ul>
-            <template
-              v-if="edit"
-              v-show="boxshow"
-            >
+            <template v-if="edit">
               <el-form-item label="优化功能：">
                 <el-input
                   type="textarea"
@@ -201,8 +170,7 @@
               </el-form-item>
             </template>
             <ul
-              else
-              v-show="!boxshow"
+              v-else
               class="ulList last-list"
             >
               <li>
@@ -222,19 +190,13 @@
             :model="formRepre"
             label-width="100px"
           >
-          <template
-              v-if="edit"
-              v-show="boxshow"
-            >
-            <el-form-item label="创建时间：">
-              <el-input
-                v-model="formRepre.time"
-              ></el-input>
-            </el-form-item>
-          </template>
-          <ul
-              else
-              v-show="!boxshow"
+            <template v-if="edit">
+              <el-form-item label="创建时间：">
+                <el-input v-model="formRepre.time"></el-input>
+              </el-form-item>
+            </template>
+            <ul
+              v-else
               class="ulList"
             >
               <li>
@@ -245,19 +207,13 @@
                 ></el-input>
               </li>
             </ul>
-            <template
-              v-if="edit"
-              v-show="boxshow"
-            >
-            <el-form-item label="发版负责人：">
-              <el-input
-                v-model="formRepre.ePerson"
-              ></el-input>
-            </el-form-item>
+            <template v-if="edit">
+              <el-form-item label="发版负责人：">
+                <el-input v-model="formRepre.ePerson"></el-input>
+              </el-form-item>
             </template>
             <ul
-              else
-              v-show="!boxshow"
+              v-else
               class="ulList"
             >
               <li>
@@ -268,20 +224,16 @@
                 ></el-input>
               </li>
             </ul>
-            <template
-              v-if="edit"
-              v-show="boxshow"
-            >
-            <el-form-item label="发版资料SVN地址：">
-              <el-input
-                v-model="formRepre.svn"
-                readonly
-              ></el-input>
-            </el-form-item>
+            <template v-if="edit">
+              <el-form-item label="发版资料SVN地址：">
+                <el-input
+                  v-model="formRepre.svn"
+                  readonly
+                ></el-input>
+              </el-form-item>
             </template>
             <ul
-              else
-              v-show="!boxshow"
+              v-else
               class="ulList"
             >
               <li>
@@ -292,19 +244,13 @@
                 ></el-input>
               </li>
             </ul>
-            <template
-              v-if="edit"
-              v-show="boxshow"
-            >
-            <el-form-item label="演示数据库：">
-              <el-input
-                v-model="formRepre.sql"
-              ></el-input>
-            </el-form-item>
+            <template v-if="edit">
+              <el-form-item label="演示数据库：">
+                <el-input v-model="formRepre.sql"></el-input>
+              </el-form-item>
             </template>
             <ul
-              else
-              v-show="!boxshow"
+              v-else
               class="ulList"
             >
               <li>
@@ -315,19 +261,13 @@
                 ></el-input>
               </li>
             </ul>
-            <template
-              v-if="edit"
-              v-show="boxshow"
-            >
-            <el-form-item label="密码">
-              <el-input
-                v-model="formRepre.password"
-              ></el-input>
-            </el-form-item>
+            <template v-if="edit">
+              <el-form-item label="密码">
+                <el-input v-model="formRepre.password"></el-input>
+              </el-form-item>
             </template>
             <ul
-              else
-              v-show="!boxshow"
+              v-else
               class="ulList"
             >
               <li>
@@ -338,19 +278,13 @@
                 ></el-input>
               </li>
             </ul>
-            <template
-              v-if="edit"
-              v-show="boxshow"
-            >
-            <el-form-item label="新增功能：">
-              <el-input
-                v-model="formRepre.addFun"
-              ></el-input>
-            </el-form-item>
+            <template v-if="edit">
+              <el-form-item label="新增功能：">
+                <el-input v-model="formRepre.addFun"></el-input>
+              </el-form-item>
             </template>
             <ul
-              else
-              v-show="!boxshow"
+              v-else
               class="ulList"
             >
               <li>
@@ -361,20 +295,16 @@
                 ></el-input>
               </li>
             </ul>
-            <template
-              v-if="edit"
-              v-show="boxshow"
-            >
-            <el-form-item label="遗留问题：">
-              <el-input
-                type="textarea"
-                v-model="formRepre.question"
-              ></el-input>
-            </el-form-item>
+            <template v-if="edit">
+              <el-form-item label="遗留问题：">
+                <el-input
+                  type="textarea"
+                  v-model="formRepre.question"
+                ></el-input>
+              </el-form-item>
             </template>
             <ul
-              else
-              v-show="!boxshow"
+              v-else
               class="ulList last-list"
             >
               <li>
@@ -389,14 +319,12 @@
           </el-form>
         </div>
       </div>
-      <template
-              v-if="edit"
-              v-show="boxshow"
-            >
-      <div class="btn">
-         <el-button
+      <template v-if="edit">
+        <div class="btn">
+          <el-button
             class="cancel"
             round
+            @click = "onCancel"
           >取消</el-button>
           <el-button
             class="save"
@@ -404,7 +332,7 @@
             @click="onSubmit"
             round
           >保存</el-button>
-      </div>
+        </div>
       </template>
     </div>
   </div>
@@ -413,6 +341,7 @@
 export default {
   data () {
     return {
+      boxHeadTitle: '',
       labelPosition: 'right',
       formRepre: {
         vNum: '',
@@ -434,18 +363,33 @@ export default {
         addFun: '',
         question: ''
       },
-      edit: true,
-      boxshow: true
+      edit: false
     }
   },
   methods: {
+    onCancel () {
+      this.edit = false
+    },
     onSubmit () {
       this.edit = false
-      this.boxshow = false
     },
     onEdit () {
       this.edit = true
-      this.boxshow = true
+    }
+  },
+  mounted () {
+    if (this.$route.params.data) {
+      this.boxHeadTitle = this.$route.params.data.label + '--产品版本'
+    }
+  },
+  watch: {
+    $route: function (to, from) {
+      // from 对象中包含当前地址
+      // to 对象中包含目标地址
+      // 其实还有一个next参数的
+      // 这个参数是控制路由是否跳转的
+      // 如果没写，可以不用写next()来代表允许路由跳转，如果写了就必须写next(),否则路由是不会生效的。
+      this.boxHeadTitle = this.$route.params.data.label + '--产品版本'
     }
   }
 }
@@ -462,92 +406,5 @@ export default {
     width: 48%;
   }
 }
-.form-box /deep/ .el-input,
-.form-box /deep/ .el-textarea {
-  width: 100%;
-}
-.el-textarea /deep/ .el-textarea__inner {
-  height: 120px;
-}
-.el-form-item {
-  margin-bottom: 8px;
-}
-.el-select {
-  display: block;
-}
-.btn {
-  margin: 10px auto;
-  width: 100%;
-  text-align: center;
-}
 
-.btn .cancel {
-  background: #ebebeb;
-  border: none;
-  min-width: 100px;
-}
-.btn .save {
-  background: #5d70ea;
-  border: none;
-  min-width: 100px;
-}
-.el-form-item /deep/ .el-form-item__label {
-  font-size: 12px;
-}
-.el-input /deep/ .el-input__inner {
-  height: 40px;
-  line-height: 40px;
-}
-.el-select /deep/ .el-input__inner {
-  height: 40px;
-  line-height: 40px;
-}
-.ulList:last-child{
-  // border-bottom:solid 1px #ccc;
-}
-.ulList li {
-  display: flex;
-}
-.ulList li span {
-  // width:110px;
-  height: 40px;
-  line-height: 40px;
-  font-size:12px;
-  padding-left:5px;
-  display: block;
-  border-top:solid 1px #ccc;
-  border-left:solid 1px #ccc;
-}
-.leftName {
-  width: 140px;
-  background: #F5F5F5;
-}
-.rightValue {
-  background: #fff;
-}
-.leftValue /deep/ .el-input__inner{
-  border-radius: 0px!important;
-  border-bottom:0;
-  border-top: solid 1px #ccc;
-  outline: none;
-}
-.leftValue .el-input:last-child /deep/ .el-input__inner{
-  border-bottom:solid 1px #ccc!important;
-}
-.box-header{
-  display: flex;
-  justify-content: space-between;
-}
-.edit{
-  padding-right:20px;
-}
-.last-list li{
-  height:120px!important;
-}
-.last-list li span{
-  height:100%;
-}
-.last-list li .leftValue .el-input__inner{
-  height:100%!important;
-}
 </style>

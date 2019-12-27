@@ -25,7 +25,10 @@
             <span class="el-icon-circle-plus" @click.stop="addFormVersion(data)"></span>
           </template>
           <template v-if="data.nodeType==='pv'">
-            <span class="fa fa-download">全部下载</span>
+            <div class="download">
+              <span class="fa fa-download" @click.stop = "downloadAll">全部</span>
+              <span class="fa fa-download" @click.stop = "checkDownload">选中</span>
+            </div>
           </template>
           <template v-if="data.nodeType==='pk'">
             <span class="el-icon-folder-add"></span>
@@ -236,38 +239,63 @@ export default {
         pkd: 程序包文档说明
         pt: 补丁包
         ptd: 补丁包文档说明
+
+        Query:是为了使watch能够监听到路由的变化
   */
       if (obj.nodeType === 'pf') {
-        this.$router.push({ name: 'formFamily', params: { data: obj } })
+        this.$router.push({ name: 'formFamily', query: {id: obj.id}, params: { data: obj } })
       } else if (obj.nodeType === 'pg') {
-        this.$router.push({ name: 'formGeneration', params: { data: obj } })
+        this.$router.push({ name: 'formGeneration', query: {id: obj.id}, params: { data: obj } })
       } else if (obj.nodeType === 'pv') {
-        this.$router.push({ name: 'formVersion', params: { data: obj } })
+        this.$router.push({ name: 'formVersion', query: {id: obj.id}, params: { data: obj } })
       } else if (obj.nodeType === 'pk') {
-        this.$router.push({ name: 'addFormPackage', params: { data: obj } })
+        this.$router.push({ name: 'addFormPackage', query: {id: obj.id}, params: { data: obj } })
       }
     },
     addFormGeneration (data) {
       // 新增产品代
+      console.log(data)
       this.$router.push({
         path: '/filing-cabinet/add-form-generation',
-        query: {id: data.id}
+        query: {id: data.id, nodeName: data.label}
       })
     },
     addFormVersion (data) {
       // 新增产品版本
       this.$router.push({
         path: '/filing-cabinet/add-form-version',
-        query: {id: data.id}
+        query: {id: data.id, nodeName: data.label}
       })
     },
     addPackage (data) {
       // 新增程序包或者补丁
       this.$router.push({
         path: '/filing-cabinet/add-form-package',
-        query: {id: data.id}
+        query: {id: data.id, nodeName: data.label}
       })
+    },
+    // 全部下载
+    downloadAdll () {
+
+    },
+    // 选中下载
+    checkDownload () {
+      var keys = this.$refs.tree.getCheckedKeys()
+      if (keys && keys.length > 1) {
+        this.$message({
+          message: keys,
+          showClose: true,
+          type: 'success'
+        })
+      } else {
+        this.$message({
+          message: '请选择节点~',
+          showClose: true
+        })
+      }
     }
+    // 获取选中的节点
+
   },
   mounted () {
     this.$router.push('/')
@@ -318,12 +346,24 @@ export default {
   text-align: center;
   line-height: 34px;
 }
-.pv .fa-download {
+.pv .download {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
   right: 20px;
   color: #5d70ea;
+  line-height: 34px;
+  span {
+    display:inline-block;
+    line-height: 34px;
+    &:first-child {
+      margin-right:5px;
+
+    }
+    &:hover {
+      color:rgb(255, 208, 75);
+    }
+  }
 }
 .pk .el-icon-folder-add {
   position: absolute;

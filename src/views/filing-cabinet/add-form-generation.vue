@@ -1,7 +1,7 @@
 <template>
   <div class="box">
     <div class="box-header">
-      <h3 class="header-title"> <span class="num">02</span>新增产品代</h3>
+      <h3 class="header-title"> <span class="num">02</span>{{boxHeadTitle}}</h3>
     </div>
     <div class="box-body">
       <div class="form-box">
@@ -120,6 +120,7 @@
 export default {
   data () {
     return {
+      boxHeadTitle: '',
       labelPosition: 'right',
       formRepre: {
         name: '',
@@ -146,17 +147,16 @@ export default {
     onSubmit () {}
   },
   mounted () {
-    console.log(this.$route)
+    this.boxHeadTitle = this.$route.query.nodeName + '--新增产品代'
   },
   watch: {
     '$route': function (to, from) {
-      alert(1)
       // from 对象中包含当前地址
       // to 对象中包含目标地址
       // 其实还有一个next参数的
       // 这个参数是控制路由是否跳转的
       // 如果没写，可以不用写next()来代表允许路由跳转，如果写了就必须写next(),否则路由是不会生效的。
-      console.log(to)
+      this.boxHeadTitle = to.query.nodeName + '--新增产品代'
     }
   }
 }

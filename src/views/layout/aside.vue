@@ -11,7 +11,7 @@
   >
     <el-submenu index="menu-1">
       <template slot="title">
-        <i class="el-icon-location"></i>
+        <i class="fa fa-building-o"></i>
         <span>工程实施</span>
       </template>
       <el-menu-item-group>
@@ -21,7 +21,7 @@
     </el-submenu>
     <el-submenu index="menu-2">
       <template slot="title">
-        <i class="el-icon-location"></i>
+        <i class="fa fa-address-card"></i>
         <span>产品经理</span>
       </template>
       <el-menu-item-group>
@@ -32,7 +32,7 @@
     </el-submenu>
     <el-submenu index="menu-3">
       <template slot="title">
-        <i class="el-icon-location"></i>
+        <i class="fa fa-user-circle"></i>
         <span>管理员</span>
       </template>
       <el-menu-item-group>
@@ -43,7 +43,7 @@
     </el-submenu>
     <el-submenu index="menu-4">
       <template slot="title">
-        <i class="el-icon-location"></i>
+        <i class="fa fa-search"></i>
         <span>资料库检索</span>
       </template>
       <el-menu-item-group>

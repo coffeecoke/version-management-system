@@ -113,12 +113,7 @@ export default {
 .package{
   padding:10px 0;
 }
-.form{
-  width:100%;
-}
-.el-textarea /deep/ .el-textarea__inner{
-  height:100px;
-}
+
 .tip /deep/ .el-form-item__label{
   color:#e13c40;
 }
@@ -146,20 +141,5 @@ export default {
   font-size:20px;
   font-weight:bolder;
 }
-.btn {
-  margin: 10px auto;
-  width: 100%;
-  text-align: center;
-}
 
-.btn .cancel {
-  background: #ebebeb;
-  border: none;
-  min-width: 100px;
-}
-.btn .save {
-  background: #5d70ea;
-  border: none;
-  min-width: 100px;
-}
 </style>

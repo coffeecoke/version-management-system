@@ -2,18 +2,16 @@
   <div class="box">
     <template
       v-if="edit"
-      v-show="boxshow"
     >
       <div class="box-header">
-        <h3 class="header-title"> <span class="num">02</span>查看产品族</h3>
+        <h3 class="header-title"> <span class="num">02</span>{{boxHeadTitle}}</h3>
       </div>
     </template>
     <div
-      else
-      v-show="!boxshow"
+      v-else
       class="box-header"
     >
-      <h3 class="header-title"> <span class="num">02</span>查看产品代</h3>
+      <h3 class="header-title"> <span class="num">02</span>{{boxHeadTitle}}</h3>
       <span
         class="edit"
         @click="onEdit()"
@@ -30,14 +28,12 @@
           <template v-if="edit">
             <el-form-item label="产品族名称：">
               <el-input
-                v-show="boxshow"
                 v-model="sizeForm.name"
               ></el-input>
             </el-form-item>
           </template>
           <ul
-            else
-            v-show="!boxshow"
+            v-else
             class="ulList"
           >
             <li>
@@ -45,21 +41,20 @@
               <el-input
                 class="leftValue"
                 v-model="sizeForm.name"
+                :disabled="true"
               ></el-input>
             </li>
           </ul>
           <template v-if="edit">
             <el-form-item label=" 英文缩写：">
               <el-input
-                v-show="boxshow"
                 v-model="sizeForm.can"
               ></el-input>
 
             </el-form-item>
           </template>
           <ul
-            else
-            v-show="!boxshow"
+            v-else
             class="ulList"
           >
             <li>
@@ -67,22 +62,20 @@
               <el-input
                 class="leftValue"
                 v-model="sizeForm.name"
+                :disabled="true"
               ></el-input>
             </li>
           </ul>
           <template v-if="edit">
             <el-form-item label="创建人：">
-
               <el-input
-                v-show="boxshow"
                 v-model="sizeForm.founder"
               ></el-input>
 
             </el-form-item>
           </template>
           <ul
-            else
-            v-show="!boxshow"
+            v-else
             class="ulList"
           >
             <li>
@@ -90,13 +83,13 @@
               <el-input
                 class="leftValue"
                 v-model="sizeForm.founder"
+                :disabled="true"
               ></el-input>
             </li>
           </ul>
           <template v-if="edit">
             <el-form-item label="创建时间：">
               <el-date-picker
-                v-show="boxshow"
                 value-format="yyyy-MM-dd"
                 class="ipt"
                 v-model="sizeForm.time"
@@ -106,8 +99,7 @@
             </el-form-item>
           </template>
           <ul
-            else
-            v-show="!boxshow"
+            v-else
             class="ulList"
           >
             <li>
@@ -115,21 +107,20 @@
               <el-input
                 class="leftValue"
                 v-model="sizeForm.time"
+                :disabled="true"
               ></el-input>
             </li>
           </ul>
           <template v-if="edit">
             <el-form-item label="创建事由：">
               <el-input
-                v-show="boxshow"
                 type="textarea"
                 v-model="sizeForm.cause"
               ></el-input>
             </el-form-item>
           </template>
           <ul
-            else
-            v-show="!boxshow"
+            v-else
             class="ulList last-list"
           >
             <li>
@@ -138,19 +129,20 @@
                 type="textarea"
                 class="leftValue"
                 v-model="sizeForm.cause"
+                :disabled="true"
               ></el-input>
             </li>
           </ul>
         </el-form>
         <template
           v-if="edit"
-          v-show="boxshow"
         >
           <div class="btn-box">
             <div class="btn">
               <el-button
                 class="cancel"
                 round
+                @click = "onCancel"
               >取消</el-button>
               <el-button
                 class="save"
@@ -169,6 +161,7 @@
 export default {
   data () {
     return {
+      boxHeadTitle: '',
       model1: '',
       sizeForm: {
         name: '111',
@@ -179,20 +172,37 @@ export default {
           '创建事由示例创建事由示例创建事由示例创建创建事由示例创建事由示例创建事由示例创建'
       },
       button: '',
-      edit: true,
-      boxshow: true
+      edit: false,
+      boxshow: false
     }
   },
   methods: {
+    onCancel () {
+      this.edit = false
+    },
     onSubmit () {
       this.edit = false
-      this.boxshow = false
     },
     onEdit () {
       this.edit = true
-      this.boxshow = true
+    }
+  },
+  mounted () {
+    if (this.$route.params.data) {
+      this.boxHeadTitle = this.$route.params.data.label + '--产品族'
+    }
+  },
+  watch: {
+    '$route': function (to, from) {
+      // from 对象中包含当前地址
+      // to 对象中包含目标地址
+      // 其实还有一个next参数的
+      // 这个参数是控制路由是否跳转的
+      // 如果没写，可以不用写next()来代表允许路由跳转，如果写了就必须写next(),否则路由是不会生效的。
+      this.boxHeadTitle = this.$route.params.data.label + '--产品族'
     }
   }
+
 }
 </script>
 <style scoped lang="scss">
@@ -209,90 +219,11 @@ export default {
     margin-right: 5px;
   }
 }
-.edit {
-  padding-right: 20px;
-}
 .el-form {
   padding: 20px;
   .el-form-item {
     width: 50%;
   }
 }
-.form-box /deep/ .el-input,
-.form-box /deep/ .el-textarea {
-  width: 100%;
-}
-.el-form .el-form-item:last-child {
-  height: 200px;
-}
-.el-input /deep/ .el-input__inner {
-  height: 40px;
-  line-height: 40px;
-}
-.el-select /deep/ .el-input__inner {
-  height: 40px;
-  line-height: 40px;
-}
-.el-textarea /deep/ .el-textarea__inner {
-  height: 120px;
-}
-.btn {
-  margin: 10px auto;
-  width: 100%;
-  text-align: center;
-}
-.btn .cancel {
-  background: #ebebeb;
-  border: none;
-  min-width: 100px;
-}
-.btn .save {
-  background: #5d70ea;
-  border: none;
-  min-width: 100px;
-}
-.ulList:last-child {
-  border-bottom: solid 1px #ccc;
-}
-.ulList {
-  width: 50%;
-}
-.ulList li {
-  display: flex;
-}
-.ulList li span {
-  // width:110px;
-  height: 40px;
-  line-height: 40px;
-  font-size: 12px;
-  padding-left: 5px;
-  display: block;
-  border-top: solid 1px #ccc;
-  border-left: solid 1px #ccc;
-}
-.leftName {
-  width: 140px;
-  background: #f5f5f5;
-}
-.rightValue {
-  background: #fff;
-}
-.leftValue /deep/ .el-input__inner {
-  border-radius: 0px !important;
-  border-bottom: 0;
-  border-top: solid 1px #ccc;
-  outline: none;
-}
-.leftValue .el-input:last-child /deep/ .el-input__inner {
-  border-bottom: solid 1px #ccc !important;
-}
-.last-list li {
-  height: 120px !important;
-}
-.last-list li span {
-  height: 100%;
-}
-.last-list li .leftValue .el-input__inner {
-  height: 100% !important;
-}
+
 </style>

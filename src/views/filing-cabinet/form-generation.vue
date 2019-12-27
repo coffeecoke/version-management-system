@@ -1,16 +1,12 @@
 <template>
   <div class="box">
-    <template
-      v-if="edit"
-      v-show="boxshow"
-    >
+    <template v-if="edit">
       <div class="box-header">
-        <h3 class="header-title"> <span class="num">02</span>查看产品代</h3>
+        <h3 class="header-title"> <span class="num">02</span>{{boxHeadTitle}}</h3>
       </div>
     </template>
     <div
-      else
-      v-show="!boxshow"
+      v-else
       class="box-header"
     >
       <h3 class="header-title"> <span class="num">02</span>查看产品代</h3>
@@ -27,17 +23,13 @@
             :model="formRepre"
             label-width="100px"
           >
-            <template
-              v-if="edit"
-              v-show="boxshow"
-            >
+            <template v-if="edit">
               <el-form-item label="产品名称：">
                 <el-input v-model="formRepre.name"></el-input>
               </el-form-item>
             </template>
             <ul
-              else
-              v-show="!boxshow"
+              v-else
               class="ulList"
             >
               <li>
@@ -45,20 +37,17 @@
                 <el-input
                   class="leftValue"
                   v-model="formRepre.name"
+                  :disabled="true"
                 ></el-input>
               </li>
             </ul>
-            <template
-              v-if="edit"
-              v-show="boxshow"
-            >
+            <template v-if="edit">
               <el-form-item label="英文缩写：">
                 <el-input v-model="formRepre.sx"></el-input>
               </el-form-item>
             </template>
             <ul
-              else
-              v-show="!boxshow"
+              v-else
               class="ulList"
             >
               <li>
@@ -66,13 +55,11 @@
                 <el-input
                   class="leftValue"
                   v-model="formRepre.sx"
+                  :disabled="true"
                 ></el-input>
               </li>
             </ul>
-            <template
-              v-if="edit"
-              v-show="boxshow"
-            >
+            <template v-if="edit">
               <el-form-item label="产品类型：">
                 <el-select
                   v-model="formRepre.type"
@@ -90,8 +77,7 @@
               </el-form-item>
             </template>
             <ul
-              else
-              v-show="!boxshow"
+              v-else
               class="ulList"
             >
               <li>
@@ -99,13 +85,11 @@
                 <el-input
                   class="leftValue"
                   v-model="formRepre.type"
+                  :disabled="true"
                 ></el-input>
               </li>
             </ul>
-            <template
-              v-if="edit"
-              v-show="boxshow"
-            >
+            <template v-if="edit">
               <el-form-item label="产品接口类型：">
                 <el-select
                   v-model="formRepre.jk"
@@ -123,22 +107,20 @@
               </el-form-item>
             </template>
             <ul
-              else
-              v-show="!boxshow"
+              v-else
               class="ulList"
+
             >
               <li>
                 <span class="leftName">产品接口类型：</span>
                 <el-input
                   class="leftValue"
                   v-model="formRepre.jk"
+                  :disabled="true"
                 ></el-input>
               </li>
             </ul>
-            <template
-              v-if="edit"
-              v-show="boxshow"
-            >
+            <template v-if="edit">
               <el-form-item label="创建时间：">
                 <el-date-picker
                   value-format="yyyy-MM-dd"
@@ -150,8 +132,7 @@
               </el-form-item>
             </template>
             <ul
-              else
-              v-show="!boxshow"
+              v-else
               class="ulList"
             >
               <li>
@@ -159,20 +140,17 @@
                 <el-input
                   class="leftValue"
                   v-model="formRepre.time"
+                  :disabled="true"
                 ></el-input>
               </li>
             </ul>
-            <template
-              v-if="edit"
-              v-show="boxshow"
-            >
+            <template v-if="edit">
               <el-form-item label="产品经理：">
                 <el-input v-model="formRepre.manage"></el-input>
               </el-form-item>
             </template>
             <ul
-              else
-              v-show="!boxshow"
+              v-else
               class="ulList"
             >
               <li>
@@ -180,13 +158,11 @@
                 <el-input
                   class="leftValue"
                   v-model="formRepre.manage"
+                  :disabled="true"
                 ></el-input>
               </li>
             </ul>
-            <template
-              v-if="edit"
-              v-show="boxshow"
-            >
+            <template v-if="edit">
               <el-form-item label="创建事由：">
                 <el-input
                   type="textarea"
@@ -195,8 +171,7 @@
               </el-form-item>
             </template>
             <ul
-              else
-              v-show="!boxshow"
+              v-else
               class="ulList last-list"
             >
               <li>
@@ -205,6 +180,7 @@
                   type="textarea"
                   class="leftValue"
                   v-model="formRepre.origin"
+                  :disabled="true"
                 ></el-input>
               </li>
             </ul>
@@ -216,10 +192,7 @@
             :model="formRepre"
             label-width="100px"
           >
-            <template
-              v-if="edit"
-              v-show="boxshow"
-            >
+            <template v-if="edit">
               <el-form-item label="版本变更记录：">
                 <el-input
                   type="textarea"
@@ -229,8 +202,7 @@
               </el-form-item>
             </template>
             <ul
-              else
-              v-show="!boxshow"
+              v-else
               class="ulList last-list"
             >
               <li>
@@ -239,13 +211,11 @@
                   type="textarea"
                   class="leftValue"
                   v-model="formRepre.writ"
+                  :disabled="true"
                 ></el-input>
               </li>
             </ul>
-            <template
-              v-if="edit"
-              v-show="boxshow"
-            >
+            <template v-if="edit">
               <el-form-item label="演示环境URL：">
                 <el-input
                   v-model="formRepre.url"
@@ -254,8 +224,7 @@
               </el-form-item>
             </template>
             <ul
-              else
-              v-show="!boxshow"
+              v-else
               class="ulList"
             >
               <li>
@@ -263,13 +232,11 @@
                 <el-input
                   class="leftValue"
                   v-model="formRepre.url"
+                  :disabled="true"
                 ></el-input>
               </li>
             </ul>
-            <template
-              v-if="edit"
-              v-show="boxshow"
-            >
+            <template v-if="edit">
               <el-form-item label="数据库地址：">
                 <el-input
                   v-model="formRepre.location"
@@ -278,8 +245,7 @@
               </el-form-item>
             </template>
             <ul
-              else
-              v-show="!boxshow"
+              v-else
               class="ulList"
             >
               <li>
@@ -287,13 +253,11 @@
                 <el-input
                   class="leftValue"
                   v-model="formRepre.location"
+                  :disabled="true"
                 ></el-input>
               </li>
             </ul>
-            <template
-              v-if="edit"
-              v-show="boxshow"
-            >
+            <template v-if="edit">
               <el-form-item label="用户名/密码：">
                 <el-input
                   v-model="formRepre.admin"
@@ -302,8 +266,7 @@
               </el-form-item>
             </template>
             <ul
-              else
-              v-show="!boxshow"
+              v-else
               class="ulList"
             >
               <li>
@@ -311,18 +274,16 @@
                 <el-input
                   class="leftValue"
                   v-model="formRepre.admin"
+                  :disabled="true"
                 ></el-input>
               </li>
             </ul>
           </el-form>
         </div>
       </div>
-      <template
-              v-if="edit"
-              v-show="boxshow"
-            >
-      <div class="btn">
-         <el-button
+      <template v-if="edit">
+        <div class="btn">
+          <el-button
             class="cancel"
             round
           >取消</el-button>
@@ -341,6 +302,7 @@
 export default {
   data () {
     return {
+      boxHeadTitle: '',
       labelPosition: 'right',
       formRepre: {
         name: '监管报送系统',
@@ -372,6 +334,21 @@ export default {
       this.edit = true
       this.boxshow = true
     }
+  },
+  mounted () {
+    if (this.$route.params.data) {
+      this.boxHeadTitle = this.$route.params.data.label + '--产品代'
+    }
+  },
+  watch: {
+    $route: function (to, from) {
+      // from 对象中包含当前地址
+      // to 对象中包含目标地址
+      // 其实还有一个next参数的
+      // 这个参数是控制路由是否跳转的
+      // 如果没写，可以不用写next()来代表允许路由跳转，如果写了就必须写next(),否则路由是不会生效的。
+      this.boxHeadTitle = this.$route.params.data.label + '--产品代'
+    }
   }
 }
 </script>
@@ -387,92 +364,5 @@ export default {
     width: 48%;
   }
 }
-.form-box /deep/ .el-input,
-.form-box /deep/ .el-textarea {
-  width: 100%;
-}
-.el-textarea /deep/ .el-textarea__inner {
-  height: 120px;
-}
-.el-form-item {
-  margin-bottom: 8px;
-}
-.el-select {
-  display: block;
-}
-.btn {
-  margin: 10px auto;
-  width: 100%;
-  text-align: center;
-}
 
-.btn .cancel {
-  background: #ebebeb;
-  border: none;
-  min-width: 100px;
-}
-.btn .save {
-  background: #5d70ea;
-  border: none;
-  min-width: 100px;
-}
-.el-form-item /deep/ .el-form-item__label {
-  font-size: 12px;
-}
-.el-input /deep/ .el-input__inner {
-  height: 40px;
-  line-height: 40px;
-}
-.el-select /deep/ .el-input__inner {
-  height: 40px;
-  line-height: 40px;
-}
-.ulList:last-child {
-  border-bottom: solid 1px #ccc;
-}
-.ulList li {
-  display: flex;
-}
-.ulList li span {
-  // width:110px;
-  height: 40px;
-  line-height: 40px;
-  font-size: 12px;
-  padding-left: 5px;
-  display: block;
-  border-top: solid 1px #ccc;
-  border-left: solid 1px #ccc;
-}
-.leftName {
-  width: 140px;
-  background: #f5f5f5;
-}
-.rightValue {
-  background: #fff;
-}
-.leftValue /deep/ .el-input__inner {
-  border-radius: 0px !important;
-  border-bottom: 0;
-  border-top: solid 1px #ccc;
-  outline: none;
-}
-.leftValue .el-input:last-child /deep/ .el-input__inner {
-  border-bottom: solid 1px #ccc !important;
-}
-.box-header {
-  display: flex;
-  justify-content: space-between;
-}
-.edit {
-  padding-right: 20px;
-}
-.last-list li {
-  height: 120px !important;
-}
-.last-list li span {
-  height: 100%;
-}
-.last-list li .leftValue .el-input__inner {
-  height: 100% !important;
-}
 </style>

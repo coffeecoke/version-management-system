@@ -17,6 +17,7 @@
     "element-ui": "^2.13.0",
     "font-awesome.css": "^4.7.2",
     "nprogress": "^0.2.0",
+    "path-to-regexp": "^6.1.0",
     "vue": "^2.5.2",
     "vue-awesome": "^4.0.2",
     "vue-router": "^3.0.1",

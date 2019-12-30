@@ -1,7 +1,7 @@
 <template>
   <main class="main">
     <div class="breadcrumb">
-      <!-- <Breadcrumb></Breadcrumb> -->
+      <Breadcrumb></Breadcrumb>
     </div>
     <div class="content">
       <transition name="fade-transform" mode="out-in">
@@ -11,14 +11,14 @@
   </main>
 </template>
 <script>
-// import Breadcrumb from '@/components/Breadcrumb'
+import Breadcrumb from '@/components/Breadcrumb'
 export default {
   name: 'RightMain',
   data () {
     return {}
   },
   components: {
-    // Breadcrumb
+    Breadcrumb
   },
   beforeCreate () {
     console.log()
@@ -28,7 +28,7 @@ export default {
 </script>
 <style lang="scss" scoped>
   .main {
-    height:100%;
+    height:calc(100% - 40px);
   }
   .content {
     height:100%;

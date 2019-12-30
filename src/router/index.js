@@ -7,6 +7,9 @@ const router = new Router({
     {
       path: '/',
       name: 'Layout',
+      meta: {
+        title: '首页'
+      },
       redirect: 'filing-cabinet',
       component: () => import('@/views/layout'),
       children: [
@@ -72,12 +75,18 @@ const router = new Router({
         },
         {
           path: '/key-words',
-          name: '关键词检索',
+          name: 'keyWords',
+          meta: {
+            title: '关键词检索'
+          },
           component: () => import('@/views/key-words')
         },
         {
           path: '/summary-troubleshooting',
-          name: '摘要排查',
+          name: 'summaryTroubleshooting',
+          mata: {
+            title: '摘要排查'
+          },
           component: () => import('@/views/summary-troubleshooting')
         }
       ]
@@ -85,6 +94,9 @@ const router = new Router({
     {
       path: '/404',
       name: '404',
+      meta: {
+        title: '404页面'
+      },
       component: () => import('@/views/404')
     }
   ]

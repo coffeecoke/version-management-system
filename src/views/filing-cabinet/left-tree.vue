@@ -299,6 +299,7 @@ export default {
   },
   mounted () {
     this.$router.push('/')
+    console.log(this.$route)
   },
   activated () {}
 }

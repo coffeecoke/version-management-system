@@ -221,6 +221,7 @@ export default {
   },
   watch: {
     '$route': function (to, from) {
+      console.log(this.$route)
       // from 对象中包含当前地址
       // to 对象中包含目标地址
       // 其实还有一个next参数的

@@ -143,7 +143,9 @@ export default {
     }
   },
   mounted () {
-    this.boxHeadTitle = this.$route.query.nodeName + '--新增产品代'
+    if (this.$route.params) {
+      this.boxHeadTitle = this.$route.params.data.label + '--新增产品版本'
+    }
   },
   watch: {
     '$route': function (to, from) {
@@ -152,7 +154,7 @@ export default {
       // 其实还有一个next参数的
       // 这个参数是控制路由是否跳转的
       // 如果没写，可以不用写next()来代表允许路由跳转，如果写了就必须写next(),否则路由是不会生效的。
-      this.boxHeadTitle = to.query.nodeName + '--新增产品代'
+      this.boxHeadTitle = to.params.data.label + '--新增产品版本'
     }
   }
 }

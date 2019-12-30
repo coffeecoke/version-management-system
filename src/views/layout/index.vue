@@ -33,7 +33,6 @@ export default {
 <style scoped lang="scss">
 /* css */
 .wrap {
-  display: flex;
   height:100%;
 }
 .el-header {
@@ -43,7 +42,7 @@ export default {
 .el-main {
   background-color:#f1f1f1;
 }
-.content {
-  flex:1;
-}
+// .content {
+//   height:calc (100% - 60px);
+// }
 </style>

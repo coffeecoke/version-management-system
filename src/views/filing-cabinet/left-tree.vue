@@ -254,24 +254,32 @@ export default {
     },
     addFormGeneration (data) {
       // 新增产品代
-      console.log(data)
       this.$router.push({
-        path: '/filing-cabinet/add-form-generation',
-        query: {id: data.id, nodeName: data.label}
+        name: 'addFormGeneration',
+        query: {id: data.id},
+        params: {
+          data: data
+        }
       })
     },
     addFormVersion (data) {
       // 新增产品版本
       this.$router.push({
-        path: '/filing-cabinet/add-form-version',
-        query: {id: data.id, nodeName: data.label}
+        name: 'addFormVersion',
+        query: {id: data.id},
+        params: {
+          data: data
+        }
       })
     },
     addPackage (data) {
       // 新增程序包或者补丁
       this.$router.push({
-        path: '/filing-cabinet/add-form-package',
-        query: {id: data.id, nodeName: data.label}
+        name: 'addFormPackage',
+        query: {id: data.id},
+        params: {
+          data: data
+        }
       })
     },
     // 全部下载
@@ -334,6 +342,7 @@ export default {
   font-size: 12px;
   top: 0;
   bottom: 0;
+  cursor: pointer;
   line-height: 36px;
 }
 .pg .el-icon-circle-plus {
@@ -412,6 +421,7 @@ export default {
 .el-tree .el-tree-node__content {
   height:34px;
   position: relative;
+  cursor: pointer;
   border-bottom: 1px solid #e0e0e0;
 }
 .el-tree .el-tree-node__content.pf {
@@ -442,6 +452,7 @@ export default {
 }
 .is-expanded > .pf .el-icon-plus {
   color: #fff;
+  cursor: pointer;
 }
 .el-tree .is-expanded > .pf + .el-tree-node__children {
   border-left: 3px solid #5d70ea;

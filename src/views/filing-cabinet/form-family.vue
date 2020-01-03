@@ -24,9 +24,10 @@
           :model="sizeForm"
           label-width="120px"
           size="mini"
+          :rules="rules"
         >
           <template v-if="edit">
-            <el-form-item label="产品族名称：">
+            <el-form-item label="产品族名称：" prop="name">
               <el-input
                 v-model="sizeForm.name"
               ></el-input>
@@ -46,7 +47,7 @@
             </li>
           </ul>
           <template v-if="edit">
-            <el-form-item label=" 英文缩写：">
+            <el-form-item label=" 英文缩写：" prop="can">
               <el-input
                 v-model="sizeForm.can"
               ></el-input>
@@ -67,7 +68,7 @@
             </li>
           </ul>
           <template v-if="edit">
-            <el-form-item label="创建人：">
+            <el-form-item label="创建人："  prop="founder">
               <el-input
                 v-model="sizeForm.founder"
               ></el-input>
@@ -88,7 +89,7 @@
             </li>
           </ul>
           <template v-if="edit">
-            <el-form-item label="创建时间：">
+            <el-form-item label="创建时间："  prop="time">
               <el-date-picker
                 value-format="yyyy-MM-dd"
                 class="ipt"
@@ -112,7 +113,7 @@
             </li>
           </ul>
           <template v-if="edit">
-            <el-form-item label="创建事由：">
+            <el-form-item label="创建事由："  prop="cause">
               <el-input
                 type="textarea"
                 v-model="sizeForm.cause"
@@ -171,6 +172,24 @@ export default {
         cause:
           '创建事由示例创建事由示例创建事由示例创建创建事由示例创建事由示例创建事由示例创建'
       },
+      rules: {
+        name: [
+          { required: true, message: '请输入活动名称', trigger: 'blur' },
+          { min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur' }
+        ],
+        can: [
+          { required: true, message: '请选择活动区域', trigger: 'change' }
+        ],
+        founder: [
+          { type: 'date', required: true, message: '请选择日期', trigger: 'change' }
+        ],
+        time: [
+          { type: 'date', required: true, message: '请选择时间', trigger: 'change' }
+        ],
+        cause: [
+          { type: 'array', required: true, message: '请至少选择一个活动性质', trigger: 'change' }
+        ]
+      },
       button: '',
       edit: false,
       boxshow: false
@@ -180,8 +199,16 @@ export default {
     onCancel () {
       this.edit = false
     },
-    onSubmit () {
+    onSubmit (formName) {
       this.edit = false
+      this.$refs[formName].validate((valid) => {
+        if (valid) {
+          alert('submit!')
+        } else {
+          console.log('error submit!!')
+          return false
+        }
+      })
     },
     onEdit () {
       this.edit = true

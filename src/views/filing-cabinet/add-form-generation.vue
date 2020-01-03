@@ -9,15 +9,16 @@
           <el-form
             :label-position="labelPosition"
             :model="formRepre"
+            :rules="rules"
             label-width="100px"
           >
-            <el-form-item label="产品名称：">
+            <el-form-item label="产品名称：" prop="name">
               <el-input v-model="formRepre.name"></el-input>
             </el-form-item>
-            <el-form-item label="英文缩写：">
+            <el-form-item label="英文缩写：" prop="sx">
               <el-input v-model="formRepre.sx"></el-input>
             </el-form-item>
-            <el-form-item label="产品类型：">
+            <el-form-item label="产品类型：" prop="type">
               <el-select
                 v-model="formRepre.type"
                 placeholder="请选择活动区域"
@@ -32,7 +33,7 @@
                 ></el-option>
               </el-select>
             </el-form-item>
-            <el-form-item label="产品接口类型：">
+            <el-form-item label="产品接口类型：" prop="jk">
               <el-select
                 v-model="formRepre.jk"
                 placeholder="请选择活动区域"
@@ -47,7 +48,7 @@
                 ></el-option>
               </el-select>
             </el-form-item>
-            <el-form-item label="创建时间：">
+            <el-form-item label="创建时间：" prop="time">
               <el-date-picker
                 value-format="yyyy-MM-dd"
                 class="ipt"
@@ -56,10 +57,10 @@
                 placeholder="选择日期"
               ></el-date-picker>
             </el-form-item>
-            <el-form-item label="产品经理：">
+            <el-form-item label="产品经理：" prop="manage">
               <el-input v-model="formRepre.manage"></el-input>
             </el-form-item>
-            <el-form-item label="创建事由：">
+            <el-form-item label="创建事由："  prop="origin">
               <el-input
                 type="textarea"
                 v-model="formRepre.origin"
@@ -72,27 +73,28 @@
             :label-position="labelPosition"
             :model="formRepre"
             label-width="100px"
+            :rules="rules"
           >
-            <el-form-item label="版本变更记录：">
+            <el-form-item label="版本变更记录：" prop="writ">
               <el-input
                 type="textarea"
                 v-model="formRepre.writ"
                 readonly
               ></el-input>
             </el-form-item>
-            <el-form-item label="演示环境URL：">
+            <el-form-item label="演示环境URL："  prop="url">
               <el-input
                 v-model="formRepre.url"
                 readonly
               ></el-input>
             </el-form-item>
-            <el-form-item label="数据库地址：">
+            <el-form-item label="数据库地址："  prop="location">
               <el-input
                 v-model="formRepre.location"
                 readonly
               ></el-input>
             </el-form-item>
-            <el-form-item label="用户名/密码：">
+            <el-form-item label="用户名/密码："  prop="admin">
               <el-input
                 v-model="formRepre.admin"
                 disabled
@@ -138,6 +140,41 @@ export default {
         url: '',
         location: '',
         admin: ''
+      },
+      rules: {
+        name: [
+          { required: true, message: '请输入产品名称', trigger: 'blur' }
+        ],
+        sx: [
+          { required: true, message: '请输入英文缩写', trigger: 'blur' }
+        ],
+        type: [
+          { required: true, message: '请输入产品类型', trigger: 'blur' }
+        ],
+        jk: [
+          { required: true, message: '请输入接口类型', trigger: 'blur' }
+        ],
+        time: [
+          { required: true, message: '请选择时间', trigger: 'change' }
+        ],
+        manage: [
+          { required: true, message: '请输入产品经理', trigger: 'blur' }
+        ],
+        origin: [
+          { required: true, message: '请输入创建事由', trigger: 'blur' }
+        ],
+        writ: [
+          { required: true, message: '请输入版本变更记录', trigger: 'blur' }
+        ],
+        url: [
+          { type: 'array', required: true, message: '请输入演示环境URL', trigger: 'blur' }
+        ],
+        location: [
+          { type: 'array', required: true, message: '请输入数据库地址', trigger: 'blur' }
+        ],
+        admin: [
+          { type: 'array', required: true, message: '请输入用户名/密码', trigger: 'blur' }
+        ]
       },
       edit: true,
       boxshow: true
@@ -197,9 +234,6 @@ export default {
 }
 .el-textarea /deep/ .el-textarea__inner {
   height: 120px;
-}
-.el-form-item {
-  margin-bottom: 8px;
 }
 .el-select {
   display: block;

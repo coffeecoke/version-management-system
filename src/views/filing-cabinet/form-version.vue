@@ -25,6 +25,7 @@
             :model="formRepre"
             label-width="100px"
             :rules="rules"
+            :ref="formRepre"
           >
             <template v-if="edit">
               <el-form-item label="版本编号：" prop="vNum">
@@ -163,7 +164,7 @@
               </li>
             </ul>
             <template v-if="edit">
-              <el-form-item label="优化功能：">
+              <el-form-item label="优化功能：" prop="oFunction">
                 <el-input
                   type="textarea"
                   v-model="formRepre.oFunction"
@@ -331,7 +332,7 @@
           <el-button
             class="save"
             type="primary"
-            @click="onSubmit"
+            @click="onSubmit(formRepre)"
             round
           >保存</el-button>
         </div>
@@ -419,8 +420,17 @@ export default {
     onCancel () {
       this.edit = false
     },
-    onSubmit () {
-      this.edit = false
+    onSubmit (formRepre) {
+      // this.edit = false
+      this.$refs[formRepre].validate((valid) => {
+        console.log(this.$refs[formRepre])
+        if (valid) {
+          alert('submit!')
+        } else {
+          console.log('error submit!!')
+          return false
+        }
+      })
     },
     onEdit () {
       this.edit = true

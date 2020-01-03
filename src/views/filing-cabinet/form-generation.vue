@@ -23,6 +23,7 @@
             :model="formRepre"
             label-width="100px"
             :rules="rules"
+            ref="formRepre"
           >
             <template v-if="edit">
               <el-form-item label="产品名称：" prop="name">
@@ -193,6 +194,7 @@
             :model="formRepre"
             label-width="100px"
             :rules="rules"
+            :ref="formRepre"
           >
             <template v-if="edit">
               <el-form-item label="版本变更记录：" prop="writ">
@@ -292,7 +294,7 @@
           <el-button
             class="save"
             type="primary"
-            @click="onSubmit"
+            @click="onSubmit(formRepre)"
             round
           >保存</el-button>
         </div>
@@ -349,13 +351,13 @@ export default {
           { required: true, message: '请输入版本变更记录', trigger: 'blur' }
         ],
         url: [
-          { type: 'array', required: true, message: '请输入演示环境URL', trigger: 'blur' }
+          { required: true, message: '请输入演示环境URL', trigger: 'blur' }
         ],
         location: [
-          { type: 'array', required: true, message: '请输入数据库地址', trigger: 'blur' }
+          { required: true, message: '请输入数据库地址', trigger: 'blur' }
         ],
         admin: [
-          { type: 'array', required: true, message: '请输入用户名/密码', trigger: 'blur' }
+          { required: true, message: '请输入用户名/密码', trigger: 'blur' }
         ]
       },
       edit: true,
@@ -363,9 +365,18 @@ export default {
     }
   },
   methods: {
-    onSubmit () {
-      this.edit = false
-      this.boxshow = false
+    onSubmit (formRepre) {
+      // this.edit = false
+      // this.boxshow = false
+      this.$refs[formRepre].validate((valid) => {
+        console.log(this.$refs[formRepre])
+        if (valid) {
+          alert('submit!')
+        } else {
+          console.log('error submit!!')
+          return false
+        }
+      })
     },
     onEdit () {
       this.edit = true

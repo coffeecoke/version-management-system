@@ -92,6 +92,14 @@ const router = new Router({
       ]
     },
     {
+      path: '/login',
+      name: 'Login',
+      meta: {
+        title: '登录'
+      },
+      component: () => import('@/views/login')
+    },
+    {
       path: '/404',
       name: '404',
       meta: {

@@ -9,7 +9,7 @@
           <el-form
             :label-position="labelPosition"
             :model="formRepre"
-            :rules="rules"
+            :rules="formRepre"
             label-width="100px"
           >
             <el-form-item label="产品名称：" prop="name">
@@ -74,6 +74,7 @@
             :model="formRepre"
             label-width="100px"
             :rules="rules"
+            :ref="formRepre"
           >
             <el-form-item label="版本变更记录：" prop="writ">
               <el-input
@@ -111,7 +112,7 @@
         <el-button
           class="save"
           type="primary"
-          @click="onSubmit"
+          @click="onSubmit(formRepre)"
           round
         >保存</el-button>
       </div>
@@ -181,9 +182,18 @@ export default {
     }
   },
   methods: {
-    onSubmit () {
-      // 左侧树添加新增节点
-      this.appendChildNode()
+    onSubmit (formRepre) {
+      this.$refs[formRepre].validate((valid) => {
+        console.log(this.$refs[formRepre])
+        if (valid) {
+          alert('submit!')
+          // 左侧树添加新增节点
+          this.appendChildNode()
+        } else {
+          console.log('error submit!!')
+          return false
+        }
+      })
     },
     appendChildNode () {
       var nodeData = this.$route.params.data

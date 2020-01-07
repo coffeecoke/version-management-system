@@ -7,7 +7,7 @@
     <div class="form-box">
       <el-tabs v-model="activeName" @tab-click="handleClick">
         <el-tab-pane label="程序包" name="first">
-          <el-form class="form" :rules="rules" :label-position="labelPosition" label-width="120px" :model="formLabelAlign">
+          <el-form class="form" :rules="rules" ref="formPatch" :label-position="labelPosition" label-width="120px" :model="formLabelAlign">
             <el-form-item class="tip inputWid margin-20" prop="war" label="去注释war包：">
               <el-input v-model="formLabelAlign.war"></el-input>
             </el-form-item>
@@ -30,7 +30,7 @@
           </el-form>
         </el-tab-pane>
         <el-tab-pane label="补丁" name="second">
-          <el-form class="form" :rules1="rules1" :label-position="labelPosition" label-width="120px" :model="formPatch">
+          <el-form class="form" :rules1="rules1" :ref="formPatch" :label-position="labelPosition" label-width="120px" :model="formPatch">
             <el-form-item class="tip inputWid margin-20" prop="war1" label="补丁程序包：">
               <el-input v-model="formLabelAlign.war1"></el-input>
             </el-form-item>
@@ -68,6 +68,7 @@
           <el-button
             class="save"
             type="primary"
+            @click="onSubmit(formPatch)"
             round
           >保存</el-button>
       </div>
@@ -146,6 +147,18 @@ export default {
   methods: {
     handleClick (tab, event) {
       console.log(tab, event)
+    },
+    onSubmit (formPatch) {
+      // this.edit = false
+      this.$refs[formPatch].validate((valid) => {
+        console.log(this.$refs[formPatch])
+        if (valid) {
+          alert('submit!')
+        } else {
+          console.log('error submit!!')
+          return false
+        }
+      })
     }
   }
 }
@@ -165,7 +178,7 @@ export default {
   width:50%;
 }
 .margin-20{
-  margin-bottom:10px;
+  // margin-bottom:10px;
 }
 .inputInfo /deep/ .el-input{
   width:40%;

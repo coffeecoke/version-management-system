@@ -11,8 +11,7 @@ const whiteList = ['/login', '/wxCodePage', '/register'] // 不重定向白名�
 router.beforeEach((to, from, next) => {
   NProgress.start()
   let token = localStorage.getItem('token')
-  let permissionRouter = localStorage.getItem('permissionRouter')
-  if (token && permissionRouter) {
+  if (token) {
     if (to.path === '/wxCodePage' || to.path === '/login') {
       next({ path: '/' }) // 直接跳转到默认页面（如：首页）
       NProgress.done() //
@@ -35,7 +34,7 @@ router.beforeEach((to, from, next) => {
     if (whiteList.indexOf(to.path) !== -1) { // 直接跳转到白名单配置的路由
       next()
     } else {
-      // next(`/login?redirect=${to.path}`) // 否则全部重定向到登录页
+      next(`/login?redirect=${to.path}`) // 否则全部重定向到登录页
       NProgress.done()
     }
   }

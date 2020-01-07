@@ -6,7 +6,7 @@
     </div>
     <div class="header-right">
       <div class="user-name">hello,您好</div>
-      <div class="sign-out">退出</div>
+      <div class="sign-out" @click="logout">退出</div>
     </div>
   </div>
 </template>
@@ -15,6 +15,13 @@ export default {
   name: 'Header',
   data () {
     return {
+    }
+  },
+  methods: {
+    logout () {
+      localStorage.removeItem('token')
+      localStorage.removeItem('userName')
+      this.$router.push({ path: '/login' })
     }
   },
   activated () {
@@ -61,6 +68,7 @@ export default {
   }
   .sign-out {
     padding-left:10px;
+    cursor: pointer;
   }
 }
 </style>
